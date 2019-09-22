@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/PrimaryBackgroundTheme"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layoutDescription="@xml/motion_scene_activity_detail"
+    tools:context=".view.activity.detail.DetailActivity">
+
+    <ImageView
+        android:id="@+id/imageBackdropActivityDetail"
+        android:layout_width="0dp"
+        android:layout_height="260dp"
+        android:alpha="0"
+        android:contentDescription="@null"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UnusedAttribute" />
+
+    <ImageView
+        android:id="@+id/imageBackdropFilter"
+        android:layout_width="0dp"
+        android:layout_height="260dp"
+        android:alpha="0"
+        android:contentDescription="@null"
+        android:src="@color/colorPrimaryTransparent"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UnusedAttribute" />
+
+    <ImageView
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:contentDescription="@null"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:padding="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_arrow_back_white"
+        tools:ignore="UnusedAttribute" />
+
+    <TextView
+        android:id="@+id/titleActivityDetail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:alpha="0"
+        android:ellipsize="end"
+        android:fontFamily="@font/montserrat_bold"
+        android:gravity="start"
+        android:includeFontPadding="false"
+        android:maxLines="3"
+        android:padding="22dp"
+        android:textAlignment="viewStart"
+        android:textColor="@color/colorTextWhite"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/backButton" />
+
+    <TextView
+        android:id="@+id/shortTitleActivityDetail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="22dp"
+        android:alpha="1"
+        android:ellipsize="end"
+        android:fontFamily="@font/montserrat_bold"
+        android:gravity="start"
+        android:includeFontPadding="false"
+        android:maxLines="1"
+        android:textAlignment="viewStart"
+        android:textColor="@color/colorTextWhite"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/backButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/backButton"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chipGroupGenreActivityDetail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="22dp"
+        android:alpha="0"
+        android:clickable="false"
+        android:focusable="false"
+        android:paddingStart="22dp"
+        android:paddingEnd="22dp"
+        app:chipSpacingHorizontal="8dp"
+        app:chipSpacingVertical="8dp"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleActivityDetail" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollViewActivityDetail"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/colorBackground"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/backButton">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/ratingActivityDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="22dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="start"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="22sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/ratingTextActivityDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:fontFamily="@font/montserrat"
+                android:gravity="start"
+                android:includeFontPadding="false"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ratingActivityDetail" />
+
+            <TextView
+                android:id="@+id/votingActivityDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="22dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:textAlignment="center"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="22sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/votingTextActivityDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:textAlignment="center"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/votingActivityDetail" />
+
+            <TextView
+                android:id="@+id/languageActivityDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:layout_marginEnd="22dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="end"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="22sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/languageTextActivityDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="22dp"
+                android:fontFamily="@font/montserrat"
+                android:gravity="end"
+                android:includeFontPadding="false"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/languageActivityDetail" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/activityTypeChipActivityDetail"
+                style="@style/Widget.MaterialComponents.Chip.Entry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:layout_marginEnd="22dp"
+                android:checkable="false"
+                android:clickable="false"
+                android:ellipsize="end"
+                android:focusable="false"
+                android:stateListAnimator="@null"
+                android:textAppearance="@style/ChipTextMediumStyle"
+                android:textColor="@color/colorTextWhite"
+                app:chipBackgroundColor="@color/colorPrimarySecondary"
+                app:chipStartPadding="10dp"
+                app:closeIconEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/languageTextActivityDetail"
+                tools:ignore="UnusedAttribute" />
+
+            <io.armcha.elasticview.ElasticView
+                android:id="@+id/imagePosterFrameActivityDetail"
+                android:layout_width="148dp"
+                android:layout_height="208dp"
+                android:layout_marginTop="12dp"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="8dp"
+                app:flexibility="6"
+                app:layout_constraintEnd_toEndOf="@id/activityTypeChipActivityDetail"
+                app:layout_constraintTop_toBottomOf="@id/activityTypeChipActivityDetail">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/imagePosterActivityDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@color/colorPrimarySecondary"
+                    app:riv_corner_radius="14dp" />
+            </io.armcha.elasticview.ElasticView>
+
+            <TextView
+                android:id="@+id/releaseDateTextActivityDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="22dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="start"
+                android:includeFontPadding="false"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ratingTextActivityDetail" />
+
+            <TextView
+                android:id="@+id/releaseDateActivityDetail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="16dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/montserrat"
+                android:gravity="start"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@id/imagePosterFrameActivityDetail"
+                app:layout_constraintStart_toStartOf="@id/releaseDateTextActivityDetail"
+                app:layout_constraintTop_toBottomOf="@id/releaseDateTextActivityDetail" />
+
+            <TextView
+                android:id="@+id/statusTextActivityDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="14dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="start"
+                android:includeFontPadding="false"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/releaseDateActivityDetail" />
+
+            <TextView
+                android:id="@+id/statusActivityDetail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="16dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/montserrat"
+                android:gravity="start"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@id/imagePosterFrameActivityDetail"
+                app:layout_constraintStart_toStartOf="@id/statusTextActivityDetail"
+                app:layout_constraintTop_toBottomOf="@id/statusTextActivityDetail" />
+
+            <TextView
+                android:id="@+id/productionCompanyTextActivityDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="start"
+                android:includeFontPadding="false"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@id/statusTextActivityDetail"
+                app:layout_constraintTop_toBottomOf="@id/statusActivityDetail" />
+
+            <TextView
+                android:id="@+id/productionCompanyActivityDetail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="16dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/montserrat"
+                android:gravity="start"
+                android:includeFontPadding="false"
+                android:maxLines="4"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@id/imagePosterFrameActivityDetail"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="@id/productionCompanyTextActivityDetail"
+                app:layout_constraintTop_toBottomOf="@id/productionCompanyTextActivityDetail" />
+
+            <TextView
+                android:id="@+id/overviewTextActivityDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="start"
+                android:includeFontPadding="false"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@id/imagePosterFrameActivityDetail"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="@id/productionCompanyActivityDetail"
+                app:layout_constraintTop_toBottomOf="@id/imagePosterFrameActivityDetail" />
+
+            <TextView
+                android:id="@+id/overviewActivityDetail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/montserrat"
+                android:gravity="start"
+                android:includeFontPadding="false"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@id/imagePosterFrameActivityDetail"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="@id/productionCompanyTextActivityDetail"
+                app:layout_constraintTop_toBottomOf="@id/overviewTextActivityDetail" />
+
+            <FrameLayout
+                android:id="@+id/loadingFrameActivityDetail"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/colorBackground"
+                android:elevation="100dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/loadingActivityDetail"
+                    android:layout_width="138dp"
+                    android:layout_height="138dp"
+                    android:layout_gravity="center"
+                    app:lottie_fileName="lottie_loadingCat.json"
+                    app:lottie_loop="true" />
+            </FrameLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.motion.widget.MotionLayout>

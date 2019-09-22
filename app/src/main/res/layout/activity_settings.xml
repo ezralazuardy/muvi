@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.activity.settings.SettingsActivity">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/languageTextActivitySettings"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:gravity="start"
+        android:includeFontPadding="false"
+        android:text="@string/language_title_activity_settings"
+        android:textAlignment="viewStart"
+        android:textColor="@color/colorTextPrimary"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/rowAppLanguageActivitySettings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rowAppLanguageActivitySettings"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/languageTextActivitySettings"
+        tools:ignore="UnusedAttribute">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/rowAppLanguageTitleActivitySettings"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_bold"
+            android:gravity="start"
+            android:includeFontPadding="false"
+            android:text="@string/row_app_language_title_activity_settings"
+            android:textAlignment="viewStart"
+            android:textColor="@color/colorTextBlack"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/rowAppLanguageDescriptionActivitySettings"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/montserrat"
+            android:gravity="start"
+            android:includeFontPadding="false"
+            android:text="@string/row_app_language_description_activity_settings"
+            android:textAlignment="viewStart"
+            android:textColor="@color/colorTextBlack"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rowAppLanguageTitleActivitySettings" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
