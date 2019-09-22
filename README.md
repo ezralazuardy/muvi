@@ -8,6 +8,6 @@ A movie catalogue Android app using TMDB API. Built with MVVM architecture patte
 ### Tools used:
   - [**RxJava**](https://github.com/ReactiveX/RxJava) (asynchronous operation)
   - [**Retrofit**](https://square.github.io/retrofit/) (fetching API data)
-  - [**Anko**](https://github.com/Kotlin/anko) (intent & dialog made easy)
+  - [**Anko Commons**](https://github.com/Kotlin/anko) (intent & dialog made easy)
   - [**Glide**](https://github.com/bumptech/glide) (fetching image from url)
   - [**Lottie**](https://github.com/airbnb/lottie-android) (loading animation)
