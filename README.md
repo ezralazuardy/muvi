@@ -3,11 +3,15 @@
 
 ## Muvi
 
-A movie catalogue Android app using TMDB API. Built with MVVM architecture pattern, and Singleton design pattern. Written in Kotlin.
+A movie catalogue Android app using TMDB API. Built with MVVM architecture pattern, and Repository + Singleton design pattern. Written in Kotlin.
 
-### Tools used:
-  - [**Anko Commons**](https://github.com/Kotlin/anko) (intent & dialog made easy)
+### Library used:
+  - [**Anko Commons**](https://github.com/Kotlin/anko) (intent, dialog, and snackbar DSL)
+  - [**Android Architecture Components**](https://developer.android.com/topic/libraries/architecture) (UI component lifecycle and handling data persistence)
+  - [**ElasticView**](https://github.com/armcha/ElasticView) (flexable view)
   - [**Glide**](https://github.com/bumptech/glide) (fetching image from url)
+  - [**Kotlin Coroutines**](https://github.com/Kotlin/kotlinx.coroutines) (asynchronous operation)
   - [**Lottie**](https://github.com/airbnb/lottie-android) (loading animation)
   - [**Retrofit**](https://square.github.io/retrofit/) (fetching API data)
-  - [**RxJava**](https://github.com/ReactiveX/RxJava) (asynchronous operation)
+  - [**Room**](https://developer.android.com/topic/libraries/architecture/room) (local database)
+  - [**RoundedImageView**](https://github.com/vinc3m1/RoundedImageView) (rounded imageview)
