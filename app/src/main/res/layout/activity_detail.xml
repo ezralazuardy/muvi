@@ -5,11 +5,12 @@
     style="@style/PrimaryBackgroundTheme"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/layoutActivityDetail"
     app:layoutDescription="@xml/motion_scene_activity_detail"
-    tools:context=".view.activity.detail.DetailActivity">
+    tools:context=".view.detail.DetailActivity">
 
     <ImageView
-        android:id="@+id/imageBackdropActivityDetail"
+        android:id="@+id/imageBackdrop"
         android:layout_width="0dp"
         android:layout_height="260dp"
         android:contentDescription="@null"
@@ -43,8 +44,22 @@
         app:srcCompat="@drawable/ic_arrow_back_white"
         tools:ignore="UnusedAttribute" />
 
+    <ImageView
+        android:id="@+id/favouriteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:contentDescription="@null"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_favorite_border_white"
+        tools:ignore="UnusedAttribute" />
+
     <TextView
-        android:id="@+id/titleActivityDetail"
+        android:id="@+id/titleText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ellipsize="end"
@@ -61,11 +76,11 @@
         app:layout_constraintTop_toBottomOf="@id/backButton" />
 
     <TextView
-        android:id="@+id/shortTitleActivityDetail"
+        android:id="@+id/shortTitleText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="22dp"
+        android:layout_marginEnd="8dp"
         android:alpha="0"
         android:ellipsize="end"
         android:fontFamily="@font/montserrat_bold"
@@ -76,12 +91,12 @@
         android:textColor="@color/colorTextWhite"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/favouriteButton"
         app:layout_constraintStart_toEndOf="@id/backButton"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.chip.ChipGroup
-        android:id="@+id/chipGroupGenreActivityDetail"
+        android:id="@+id/chipGroupGenre"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="22dp"
@@ -91,13 +106,13 @@
         android:paddingEnd="22dp"
         app:chipSpacingHorizontal="8dp"
         app:chipSpacingVertical="8dp"
-        app:layout_constraintBottom_toTopOf="@id/scrollViewActivityDetail"
+        app:layout_constraintBottom_toTopOf="@id/scrollView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleActivityDetail" />
+        app:layout_constraintTop_toBottomOf="@id/titleText" />
 
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/scrollViewActivityDetail"
+        android:id="@+id/scrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/colorBackground"
@@ -105,14 +120,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/chipGroupGenreActivityDetail">
+        app:layout_constraintTop_toBottomOf="@id/chipGroupGenre">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/ratingActivityDetail"
+                android:id="@+id/ratingText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -129,7 +144,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/ratingTextActivityDetail"
+                android:id="@+id/ratingTextName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="22dp"
@@ -141,10 +156,10 @@
                 android:textColor="@color/colorTextPrimary"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ratingActivityDetail" />
+                app:layout_constraintTop_toBottomOf="@id/ratingText" />
 
             <TextView
-                android:id="@+id/votingActivityDetail"
+                android:id="@+id/votingText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="22dp"
@@ -161,7 +176,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/votingTextActivityDetail"
+                android:id="@+id/votingTextName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat"
@@ -173,10 +188,10 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/votingActivityDetail" />
+                app:layout_constraintTop_toBottomOf="@id/votingText" />
 
             <TextView
-                android:id="@+id/languageActivityDetail"
+                android:id="@+id/languageText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="22dp"
@@ -193,7 +208,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/languageTextActivityDetail"
+                android:id="@+id/languageTextName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="22dp"
@@ -205,11 +220,11 @@
                 android:textColor="@color/colorTextPrimary"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/languageActivityDetail" />
+                app:layout_constraintTop_toBottomOf="@id/languageText" />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/activityTypeChipActivityDetail"
                 style="@style/Widget.MaterialComponents.Chip.Entry"
+                android:id="@+id/activityTypeChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="22dp"
@@ -225,22 +240,22 @@
                 app:chipStartPadding="10dp"
                 app:closeIconEnabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/languageTextActivityDetail"
+                app:layout_constraintTop_toBottomOf="@id/languageText"
                 tools:ignore="UnusedAttribute" />
 
             <io.armcha.elasticview.ElasticView
-                android:id="@+id/imagePosterFrameActivityDetail"
+                android:id="@+id/imagePosterFrame"
                 android:layout_width="148dp"
                 android:layout_height="208dp"
                 android:layout_marginTop="12dp"
                 app:cardCornerRadius="14dp"
                 app:cardElevation="8dp"
                 app:flexibility="6"
-                app:layout_constraintEnd_toEndOf="@id/activityTypeChipActivityDetail"
-                app:layout_constraintTop_toBottomOf="@id/activityTypeChipActivityDetail">
+                app:layout_constraintEnd_toEndOf="@id/activityTypeChip"
+                app:layout_constraintTop_toBottomOf="@id/activityTypeChip">
 
                 <com.makeramen.roundedimageview.RoundedImageView
-                    android:id="@+id/imagePosterActivityDetail"
+                    android:id="@+id/imagePoster"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
@@ -249,7 +264,7 @@
             </io.armcha.elasticview.ElasticView>
 
             <TextView
-                android:id="@+id/releaseDateTextActivityDetail"
+                android:id="@+id/releaseDateTextName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="22dp"
@@ -262,10 +277,10 @@
                 android:textColor="@color/colorTextPrimary"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ratingTextActivityDetail" />
+                app:layout_constraintTop_toBottomOf="@id/ratingTextName" />
 
             <TextView
-                android:id="@+id/releaseDateActivityDetail"
+                android:id="@+id/releaseDateText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -278,12 +293,12 @@
                 android:textAlignment="viewStart"
                 android:textColor="@color/colorTextPrimary"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@id/imagePosterFrameActivityDetail"
-                app:layout_constraintStart_toStartOf="@id/releaseDateTextActivityDetail"
-                app:layout_constraintTop_toBottomOf="@id/releaseDateTextActivityDetail" />
+                app:layout_constraintEnd_toStartOf="@id/imagePosterFrame"
+                app:layout_constraintStart_toStartOf="@id/releaseDateTextName"
+                app:layout_constraintTop_toBottomOf="@id/releaseDateTextName" />
 
             <TextView
-                android:id="@+id/statusTextActivityDetail"
+                android:id="@+id/statusTextName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="22dp"
@@ -296,10 +311,10 @@
                 android:textColor="@color/colorTextPrimary"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/releaseDateActivityDetail" />
+                app:layout_constraintTop_toBottomOf="@id/releaseDateText" />
 
             <TextView
-                android:id="@+id/statusActivityDetail"
+                android:id="@+id/statusText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -312,12 +327,12 @@
                 android:textAlignment="viewStart"
                 android:textColor="@color/colorTextPrimary"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@id/imagePosterFrameActivityDetail"
-                app:layout_constraintStart_toStartOf="@id/statusTextActivityDetail"
-                app:layout_constraintTop_toBottomOf="@id/statusTextActivityDetail" />
+                app:layout_constraintEnd_toStartOf="@id/imagePosterFrame"
+                app:layout_constraintStart_toStartOf="@id/statusTextName"
+                app:layout_constraintTop_toBottomOf="@id/statusTextName" />
 
             <TextView
-                android:id="@+id/productionCompanyTextActivityDetail"
+                android:id="@+id/productionCompanyTextName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
@@ -328,11 +343,11 @@
                 android:textAlignment="viewStart"
                 android:textColor="@color/colorTextPrimary"
                 android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@id/statusTextActivityDetail"
-                app:layout_constraintTop_toBottomOf="@id/statusActivityDetail" />
+                app:layout_constraintStart_toStartOf="@id/statusText"
+                app:layout_constraintTop_toBottomOf="@id/statusText" />
 
             <TextView
-                android:id="@+id/productionCompanyActivityDetail"
+                android:id="@+id/productionCompanyText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -345,13 +360,13 @@
                 android:textAlignment="viewStart"
                 android:textColor="@color/colorTextPrimary"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@id/imagePosterFrameActivityDetail"
+                app:layout_constraintEnd_toStartOf="@id/imagePosterFrame"
                 app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintStart_toStartOf="@id/productionCompanyTextActivityDetail"
-                app:layout_constraintTop_toBottomOf="@id/productionCompanyTextActivityDetail" />
+                app:layout_constraintStart_toStartOf="@id/productionCompanyTextName"
+                app:layout_constraintTop_toBottomOf="@id/productionCompanyTextName" />
 
             <TextView
-                android:id="@+id/overviewTextActivityDetail"
+                android:id="@+id/overviewTextName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
@@ -362,13 +377,13 @@
                 android:textAlignment="viewStart"
                 android:textColor="@color/colorTextPrimary"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="@id/imagePosterFrameActivityDetail"
+                app:layout_constraintEnd_toEndOf="@id/imagePosterFrame"
                 app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintStart_toStartOf="@id/productionCompanyActivityDetail"
-                app:layout_constraintTop_toBottomOf="@id/imagePosterFrameActivityDetail" />
+                app:layout_constraintStart_toStartOf="@id/productionCompanyText"
+                app:layout_constraintTop_toBottomOf="@id/imagePosterFrame" />
 
             <TextView
-                android:id="@+id/overviewActivityDetail"
+                android:id="@+id/overviewText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -378,13 +393,13 @@
                 android:textAlignment="viewStart"
                 android:textColor="@color/colorTextPrimary"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="@id/imagePosterFrameActivityDetail"
+                app:layout_constraintEnd_toEndOf="@id/imagePosterFrame"
                 app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintStart_toStartOf="@id/productionCompanyTextActivityDetail"
-                app:layout_constraintTop_toBottomOf="@id/overviewTextActivityDetail" />
+                app:layout_constraintStart_toStartOf="@id/productionCompanyText"
+                app:layout_constraintTop_toBottomOf="@id/overviewTextName" />
 
             <FrameLayout
-                android:id="@+id/loadingFrameActivityDetail"
+                android:id="@+id/loadingFrame"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="@color/colorBackground"
@@ -395,7 +410,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.airbnb.lottie.LottieAnimationView
-                    android:id="@+id/loadingActivityDetail"
+                    android:id="@+id/loading"
                     android:layout_width="138dp"
                     android:layout_height="138dp"
                     android:layout_gravity="center"

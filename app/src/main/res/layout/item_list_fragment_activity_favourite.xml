@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:ignore="UnusedAttribute">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/itemCardView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/background_card_view_item_list"
+        android:clickable="true"
+        android:elevation="8dp"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:paddingStart="16dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/itemTitleTextViewItemList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="0dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/montserrat_bold"
+            android:includeFontPadding="false"
+            android:maxLines="2"
+            android:textColor="@color/colorTextWhite"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@id/itemCardView"
+            app:layout_constraintTop_toTopOf="@id/itemCardView" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup1ItemList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:clickable="false"
+            android:elevation="0dp"
+            android:focusable="false"
+            app:chipSpacingHorizontal="0dp"
+            app:layout_constraintEnd_toEndOf="@id/itemCardView"
+            app:layout_constraintStart_toStartOf="@id/itemCardView"
+            app:layout_constraintTop_toBottomOf="@id/itemTitleTextViewItemList"
+            app:singleLine="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/ratingChipItemList"
+                style="@style/Widget.MaterialComponents.Chip.Entry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="false"
+                android:clickable="false"
+                android:elevation="0dp"
+                android:focusable="false"
+                android:stateListAnimator="@null"
+                android:textAppearance="@style/ChipTextMediumStyle"
+                android:textColor="@color/colorTextWhite"
+                app:chipBackgroundColor="@android:color/transparent"
+                app:chipIcon="@drawable/ic_star_yellow"
+                app:closeIconEnabled="false" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/languageChipItemList"
+                style="@style/Widget.MaterialComponents.Chip.Entry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="false"
+                android:clickable="false"
+                android:elevation="0dp"
+                android:focusable="false"
+                android:stateListAnimator="@null"
+                android:textAppearance="@style/ChipTextMediumStyle"
+                android:textColor="@color/colorTextWhite"
+                app:chipBackgroundColor="@android:color/transparent"
+                app:closeIconEnabled="false" />
+        </com.google.android.material.chip.ChipGroup>
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup2ItemList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:clickable="false"
+            android:elevation="0dp"
+            android:focusable="false"
+            app:chipSpacingHorizontal="8dp"
+            app:chipSpacingVertical="8dp"
+            app:layout_constraintEnd_toEndOf="@id/itemCardView"
+            app:layout_constraintStart_toStartOf="@id/itemCardView"
+            app:layout_constraintTop_toBottomOf="@id/chipGroup1ItemList" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <FrameLayout
+        android:id="@+id/coverImageViewFrame"
+        android:layout_width="116dp"
+        android:layout_height="174dp"
+        android:layout_margin="14dp"
+        android:background="@drawable/background_poster_item_list"
+        android:elevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/coverImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:contentDescription="@null"
+            android:elevation="12dp"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            tools:ignore="UnusedAttribute" />
+    </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

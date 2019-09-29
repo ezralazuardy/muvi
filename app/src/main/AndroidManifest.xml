@@ -15,21 +15,25 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".view.activity.list.ListActivity"
+            android:name="com.muvi.view.list.ListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.activity.detail.DetailActivity"
+            android:name="com.muvi.view.detail.DetailActivity"
             android:label="@string/title_activity_detail"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".view.activity.settings.SettingsActivity"
+            android:name="com.muvi.view.favourite.FavouriteActivity"
+            android:label="@string/title_activity_favourite"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.settings.SettingsActivity"
             android:label="@string/title_activity_settings" />
-
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

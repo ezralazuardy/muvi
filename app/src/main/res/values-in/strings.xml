@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Muvi</string>
-    <string name="title_activity_list">Muvi</string>
     <string name="tab_text_1_activity_list">Film</string>
     <string name="tab_text_2_activity_list">Acara TV</string>
-    <string name="title_activity_settings">Setelan</string>
     <string name="title_activity_detail">Detail</string>
+    <string name="title_activity_favourite">Favorit</string>
+    <string name="title_activity_settings">Setelan</string>
     <string name="rating_value_activity_detail">%1$s / 10</string>
     <string name="rating_text_activity_detail">Peringkat</string>
     <string name="voted_text_activity_detail">Pilihan</string>
@@ -14,8 +13,17 @@
     <string name="status_text_activity_detail">Status :</string>
     <string name="production_companies_text_activity_detail">Perusahaan\nProduksi :</string>
     <string name="overview_text_activity_detail">Ringkasan</string>
-    <string name="dialog_confirm_exit_app">Anda yakin ingin keluar dari aplikasi?</string>
     <string name="language_title_activity_settings">Bahasa</string>
     <string name="row_app_language_title_activity_settings">Bahasa Aplikasi</string>
     <string name="row_app_language_description_activity_settings">Bahasa Indonesia</string>
+    <string name="dialog_confirm_exit_app">Anda yakin ingin keluar dari aplikasi?</string>
+    <string name="snackbar_added_to_favourite">Ditambahkan ke favorit</string>
+    <string name="empty_favourite_movie_placeholder_title">Film Favorit Kosong</string>
+    <string name="empty_favourite_movie_placeholder_description">Tambahkan film favoritmu dan kami akan menampilkannya disini</string>
+    <string name="empty_favourite_tv_placeholder_description">Tambahkan acara tv favoritmu dan kami akan menampilkannya disini</string>
+    <string name="empty_favourite_tv_placeholder_title">Acara TV Favorit Kosong</string>
+    <string name="snackbar_button_undo">Urungkan</string>
+    <string name="snackbar_unknown_error">Ups! kesalahan telah terjadi</string>
+    <string name="snackbar_retry_button">Ulangi</string>
+    <string name="snackbar_deleted_from_favourite">Dihapus dari favorit</string>
 </resources>

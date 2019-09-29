@@ -38,6 +38,20 @@
         app:layout_constraintTop_toTopOf="@id/appLogo" />
 
     <ImageView
+        android:id="@+id/favouriteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:contentDescription="@null"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:padding="16dp"
+        app:layout_constraintEnd_toStartOf="@id/settingsButton"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_favorite_white"
+        tools:ignore="UnusedAttribute" />
+
+    <ImageView
         android:id="@+id/settingsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -52,8 +66,8 @@
         tools:ignore="UnusedAttribute" />
 
     <com.google.android.material.tabs.TabLayout
+        style="@style/TabLayout"
         android:id="@+id/tabLayout"
-        style="@style/TabLayoutActivityList"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"

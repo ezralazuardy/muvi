@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Muvi</string>
-    <string name="title_activity_list">Muvi</string>
+    <string name="app_name" translatable="false">Muvi</string>
     <string name="tab_text_1_activity_list">Movie</string>
     <string name="tab_text_2_activity_list">TV Shows</string>
-    <string name="title_activity_settings">Settings</string>
     <string name="title_activity_detail">Detail</string>
+    <string name="title_activity_favourite">Favourite</string>
+    <string name="title_activity_settings">Settings</string>
     <string name="rating_value_activity_detail">%1$s / 10</string>
     <string name="rating_text_activity_detail">Rating</string>
     <string name="voted_text_activity_detail">Voted</string>
@@ -14,8 +14,17 @@
     <string name="status_text_activity_detail">Status :</string>
     <string name="production_companies_text_activity_detail">Production\nCompanies :</string>
     <string name="overview_text_activity_detail">Overview</string>
-    <string name="dialog_confirm_exit_app">Are you sure want to exit?</string>
     <string name="language_title_activity_settings">Languages</string>
     <string name="row_app_language_title_activity_settings">Application Language</string>
     <string name="row_app_language_description_activity_settings">English (United State)</string>
+    <string name="dialog_confirm_exit_app">Are you sure want to exit?</string>
+    <string name="snackbar_added_to_favourite">Added to favourite</string>
+    <string name="empty_favourite_movie_placeholder_title">Favourite Movie is Empty</string>
+    <string name="empty_favourite_movie_placeholder_description">Add some movies to your favourite, and we will show them here</string>
+    <string name="empty_favourite_tv_placeholder_description">Add some tv shows to your favourite, and we will show them here</string>
+    <string name="empty_favourite_tv_placeholder_title">Favourite TV Shows is Empty</string>
+    <string name="snackbar_button_undo">Undo</string>
+    <string name="snackbar_unknown_error">Oops! an error has occurred</string>
+    <string name="snackbar_retry_button">Retry</string>
+    <string name="snackbar_deleted_from_favourite">Deleted from favourite</string>
 </resources>

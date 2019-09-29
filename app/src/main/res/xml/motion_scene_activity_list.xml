@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MotionScene xmlns:app="http://schemas.android.com/apk/res-auto">
     <Transition
-        app:constraintSetEnd="@layout/activity_list_end"
         app:constraintSetStart="@layout/activity_list"
+        app:constraintSetEnd="@layout/activity_list_end"
         app:duration="250">
         <OnSwipe
             app:dragDirection="dragUp"
