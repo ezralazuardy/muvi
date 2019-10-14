@@ -1,11 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by Ezra Lazuardy on 10/14/19 9:55 AM
+  ~ Copyright (c) 2019 . All rights reserved.
+  ~ Last modified 10/14/19 9:54 AM
+  -->
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.muvi">
 
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <permission
+        android:name="com.muvi.READ_DATABASE"
+        android:protectionLevel="normal" />
+    <permission
+        android:name="com.muvi.WRITE_DATABASE"
+        android:protectionLevel="normal" />
 
     <application
+        android:name=".di.BaseApplication"
         android:allowBackup="true"
         android:fullBackupContent="@xml/backup_descriptor"
         android:icon="@mipmap/ic_launcher"
@@ -14,9 +31,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+
+        <receiver android:name=".view.widget.StackViewWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/stack_view_widget_info" />
+        </receiver>
+
         <activity
-            android:name="com.muvi.view.list.ListActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name=".view.list.ListActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,19 +53,51 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.muvi.view.detail.DetailActivity"
+            android:name=".view.detail.DetailActivity"
             android:label="@string/title_activity_detail"
+            android:parentActivityName=".view.list.ListActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.muvi.view.favourite.FavouriteActivity"
+            android:name=".view.favourite.FavouriteActivity"
             android:label="@string/title_activity_favourite"
+            android:parentActivityName=".view.list.ListActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".view.settings.SettingsActivity"
-            android:label="@string/title_activity_settings" />
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".view.list.ListActivity" />
+        <activity
+            android:name=".view.search.SearchResultsActivity"
+            android:label="@string/title_activity_search"
+            android:parentActivityName=".view.list.ListActivity"
+            android:launchMode="singleTop">
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-    </application>
 
+        <receiver android:name=".view.widget.StackViewWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/stack_view_widget_info" />
+        </receiver>
+
+        <service
+            android:name=".view.widget.StackWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
+        <provider
+            android:authorities="com.muvi.favourite.provider"
+            android:name=".provider.FavouriteProvider"
+            android:exported="true"
+            android:readPermission="com.muvi.READ_DATABASE"
+            android:writePermission="com.muvi.WRITE_DATABASE" />
+    </application>
 </manifest>

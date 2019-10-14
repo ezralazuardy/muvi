@@ -1,33 +1,29 @@
+/*
+ * Created by Ezra Lazuardy on 10/14/19 9:55 AM
+ * Copyright (c) 2019 . All rights reserved.
+ * Last modified 10/14/19 9:54 AM
+ */
+
 package com.muvi.repository
 
+import android.database.Cursor
 import com.muvi.dao.local.LocalTvDao
 import com.muvi.dao.remote.RemoteTvDao
 import com.muvi.database.local.entity.TvEntity
-import com.muvi.repository.base.BaseRepository
+import com.muvi.repository.base.TMDBRepository
 import org.jetbrains.anko.AnkoLogger
 
 class TvRepository(
     private val localTvDao: LocalTvDao,
     private val remoteTvDao: RemoteTvDao
-) : BaseRepository<TvEntity>, AnkoLogger {
+) : TMDBRepository<TvEntity>, AnkoLogger {
 
-    companion object {
-
-        var tvRepository: TvRepository? = null
-
-        fun getInstance(
-            localMovieDao: LocalTvDao,
-            remoteTvDao: RemoteTvDao
-        ): TvRepository {
-            val tempInstance = tvRepository
-            if (tempInstance != null) return tempInstance
-            synchronized(this) {
-                val instance = TvRepository(localMovieDao, remoteTvDao)
-                tvRepository = instance
-                return instance
-            }
-        }
-    }
+    override suspend fun search(apiKey: String, language: String, title: String) =
+        remoteTvDao.search(
+            apiKey,
+            language,
+            title
+        ).results.filter { it.original_name.isNotEmpty() }
 
     override suspend fun getDiscoverList(apiKey: String, language: String, page: Int) =
         remoteTvDao.getDiscoverList(
@@ -53,4 +49,7 @@ class TvRepository(
 
     override suspend fun removeFromFavorite(data: TvEntity) =
         localTvDao.removeFromFavorite(data)
+
+    override fun getFavouriteListCursorSynchronous(): Cursor =
+        localTvDao.getFavouriteListCursorSynchronous()
 }

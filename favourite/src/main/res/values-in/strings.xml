@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by Ezra Lazuardy on 10/14/19 9:55 AM
+  ~ Copyright (c) 2019 . All rights reserved.
+  ~ Last modified 10/14/19 9:54 AM
+  -->
+
+<resources>
+    <string name="tab_text_1_activity_list">Film</string>
+    <string name="tab_text_2_activity_list">Acara TV</string>
+    <string name="title_activity_detail">Detail</string>
+    <string name="title_activity_favourite">Favorit</string>
+    <string name="title_activity_settings">Setelan</string>
+    <string name="rating_value_activity_detail">%1$s / 10.0</string>
+    <string name="rating_text_activity_detail">Peringkat</string>
+    <string name="voted_text_activity_detail">Pilihan</string>
+    <string name="language_text_activity_detail">Bahasa</string>
+    <string name="release_date_text_activity_detail">Tanggal Rilis :</string>
+    <string name="status_text_activity_detail">Status :</string>
+    <string name="production_companies_text_activity_detail">Perusahaan\nProduksi :</string>
+    <string name="overview_text_activity_detail">Ringkasan</string>
+    <string name="title_language_activity_settings">Bahasa</string>
+    <string name="row_app_language_title_activity_settings">Bahasa aplikasi</string>
+    <string name="row_app_language_description_activity_settings">Bahasa Indonesia</string>
+    <string name="dialog_confirm_exit_app">Anda yakin ingin keluar dari aplikasi?</string>
+    <string name="snackbar_added_to_favourite">Ditambahkan ke favorit</string>
+    <string name="empty_favourite_movie_placeholder_title">Film Favorit Kosong</string>
+    <string name="empty_favourite_movie_placeholder_description">Tambahkan film favoritmu dan kami akan menampilkannya disini</string>
+    <string name="empty_favourite_tv_placeholder_description">Tambahkan acara tv favoritmu dan kami akan menampilkannya disini</string>
+    <string name="empty_favourite_tv_placeholder_title">Acara TV Favorit Kosong</string>
+    <string name="snackbar_button_undo">Urungkan</string>
+    <string name="snackbar_unknown_error">Ups! kesalahan telah terjadi</string>
+    <string name="snackbar_retry_button">Ulangi</string>
+    <string name="snackbar_deleted_from_favourite">Dihapus dari favorit</string>
+    <string name="row_app_notify_release_description_activity_settings">Tampilkan notifikasi saat ada rilis terbaru</string>
+    <string name="row_app_notify_release_title_activity_settings">Peringatkan rilis film terbaru</string>
+    <string name="row_app_reminder_title_activity_settings">Atur Pengingat</string>
+    <string name="row_app_reminder_description_activity_settings">Dapatkan pemberitahuan tentang konten Muvi</string>
+    <string name="title_notification_activity_settings">Notifikasi</string>
+    <string name="row_app_reminder_time_description_activity_settings">Atur waktu notifikasi pengingat</string>
+    <string name="row_app_reminder_time_title_activity_settings">Atur waktu pengingat</string>
+    <string name="snackbar_set_reminder">Pengingat diaktifkan</string>
+    <string name="snackbar_set_reminder_time">Pengingat diatur pukul %1$s</string>
+    <string name="snackbar_unset_reminder">Pengingat dinonaktifkan</string>
+    <string name="snackbar_set_new_release">Notifikasi rilis terbaru diaktifkan</string>
+    <string name="snackbar_unset_new_release">Notifikasi rilis terbaru dinonaktifkan</string>
+    <string name="search_hint_movie">Cari film</string>
+    <string name="search_hint_tv">Cari acara tv</string>
+    <string name="notification_reminder_title">Pengingat Muvi</string>
+    <string name="notification_reminder_description">Jangan lupa untuk jelajahi film dan acara tv di Muvi</string>
+    <string name="notification_new_release_title">Rilis Terbaru - %1$s</string>
+    <string name="add_widget">Tambah wdiget</string>
+    <string name="title_activity_search">Cari</string>
+    <string name="snackbar_empty_query_movie">Mohon masukkan judul film</string>
+    <string name="snackbar_empty_query_tv">Mohon masukkan nama acara tv</string>
+    <string name="text_search_result_activity_search_results">Menampilkan pencarian: &lt;u>%1$s&lt;/u></string>
+    <string name="snackbar_feature_not_ready">Fitur ini belum tersedia saat ini...</string>
+</resources>

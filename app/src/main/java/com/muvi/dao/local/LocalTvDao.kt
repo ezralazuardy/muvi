@@ -1,5 +1,12 @@
+/*
+ * Created by Ezra Lazuardy on 10/14/19 9:55 AM
+ * Copyright (c) 2019 . All rights reserved.
+ * Last modified 10/14/19 9:54 AM
+ */
+
 package com.muvi.dao.local
 
+import android.database.Cursor
 import androidx.room.*
 import com.muvi.database.local.entity.TvEntity
 
@@ -17,4 +24,7 @@ interface LocalTvDao {
 
     @Delete
     suspend fun removeFromFavorite(tvEntity: TvEntity): Int
+
+    @Query("SELECT * FROM tv_table ORDER BY id ASC")
+    fun getFavouriteListCursorSynchronous(): Cursor
 }

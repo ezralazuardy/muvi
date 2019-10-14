@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by Ezra Lazuardy on 10/14/19 9:55 AM
+  ~ Copyright (c) 2019 . All rights reserved.
+  ~ Last modified 10/14/19 9:54 AM
+  -->
+
 <androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -86,7 +92,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="22dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="14dp"
         android:alpha="1"
         android:ellipsize="end"
         android:fontFamily="@font/montserrat_bold"
@@ -96,8 +103,7 @@
         android:textAlignment="viewStart"
         android:textColor="@color/colorTextWhite"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@id/backButton"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/favouriteButton"
         app:layout_constraintStart_toEndOf="@id/backButton"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -131,14 +137,13 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:padding="22dp">
 
             <TextView
                 android:id="@+id/ratingText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="22dp"
                 android:ellipsize="end"
                 android:fontFamily="@font/montserrat_bold"
                 android:gravity="start"
@@ -154,21 +159,19 @@
                 android:id="@+id/ratingTextName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="22dp"
                 android:fontFamily="@font/montserrat"
                 android:gravity="start"
                 android:includeFontPadding="false"
                 android:textAlignment="viewStart"
                 android:textColor="@color/colorTextPrimary"
                 android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@id/ratingText"
                 app:layout_constraintTop_toBottomOf="@id/ratingText" />
 
             <TextView
                 android:id="@+id/votingText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="22dp"
                 android:ellipsize="end"
                 android:fontFamily="@font/montserrat_bold"
                 android:gravity="center"
@@ -199,8 +202,6 @@
                 android:id="@+id/languageText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
-                android:layout_marginEnd="22dp"
                 android:ellipsize="end"
                 android:fontFamily="@font/montserrat_bold"
                 android:gravity="end"
@@ -216,14 +217,13 @@
                 android:id="@+id/languageTextName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="22dp"
                 android:fontFamily="@font/montserrat"
                 android:gravity="end"
                 android:includeFontPadding="false"
                 android:textAlignment="viewEnd"
                 android:textColor="@color/colorTextPrimary"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/languageText"
                 app:layout_constraintTop_toBottomOf="@id/languageText" />
 
             <com.google.android.material.chip.Chip
@@ -232,7 +232,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="22dp"
-                android:layout_marginEnd="22dp"
                 android:checkable="false"
                 android:clickable="false"
                 android:ellipsize="end"
@@ -240,11 +239,11 @@
                 android:stateListAnimator="@null"
                 android:textAppearance="@style/ChipTextMediumStyle"
                 android:textColor="@color/colorTextWhite"
-                app:chipBackgroundColor="@color/colorPrimarySecondary"
+                app:chipBackgroundColor="@color/colorAccent"
                 app:chipStartPadding="10dp"
                 app:closeIconEnabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/languageText"
+                app:layout_constraintTop_toBottomOf="@id/languageTextName"
                 tools:ignore="UnusedAttribute" />
 
             <io.armcha.elasticview.ElasticView
@@ -271,7 +270,6 @@
                 android:id="@+id/releaseDateTextName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="22dp"
                 android:layout_marginTop="22dp"
                 android:fontFamily="@font/montserrat_bold"
                 android:gravity="start"
@@ -304,7 +302,6 @@
                 android:id="@+id/statusTextName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="22dp"
                 android:layout_marginTop="14dp"
                 android:fontFamily="@font/montserrat_bold"
                 android:gravity="start"
@@ -312,7 +309,7 @@
                 android:textAlignment="viewStart"
                 android:textColor="@color/colorTextPrimary"
                 android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@id/releaseDateTextName"
                 app:layout_constraintTop_toBottomOf="@id/releaseDateText" />
 
             <TextView
@@ -330,7 +327,7 @@
                 android:textColor="@color/colorTextPrimary"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toStartOf="@id/imagePosterFrame"
-                app:layout_constraintStart_toStartOf="@id/statusTextName"
+                app:layout_constraintStart_toStartOf="@id/releaseDateTextName"
                 app:layout_constraintTop_toBottomOf="@id/statusTextName" />
 
             <TextView
@@ -344,7 +341,7 @@
                 android:textAlignment="viewStart"
                 android:textColor="@color/colorTextPrimary"
                 android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@id/statusText"
+                app:layout_constraintStart_toStartOf="@id/releaseDateTextName"
                 app:layout_constraintTop_toBottomOf="@id/statusText" />
 
             <TextView
@@ -363,7 +360,7 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toStartOf="@id/imagePosterFrame"
                 app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintStart_toStartOf="@id/productionCompanyTextName"
+                app:layout_constraintStart_toStartOf="@id/releaseDateTextName"
                 app:layout_constraintTop_toBottomOf="@id/productionCompanyTextName" />
 
             <TextView
@@ -379,7 +376,7 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@id/imagePosterFrame"
                 app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintStart_toStartOf="@id/productionCompanyText"
+                app:layout_constraintStart_toStartOf="@id/releaseDateTextName"
                 app:layout_constraintTop_toBottomOf="@id/imagePosterFrame" />
 
             <TextView
@@ -395,7 +392,7 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@id/imagePosterFrame"
                 app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintStart_toStartOf="@id/productionCompanyText"
+                app:layout_constraintStart_toStartOf="@id/releaseDateTextName"
                 app:layout_constraintTop_toBottomOf="@id/overviewTextName" />
 
             <FrameLayout

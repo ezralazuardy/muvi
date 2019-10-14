@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by Ezra Lazuardy on 10/14/19 9:55 AM
+  ~ Copyright (c) 2019 . All rights reserved.
+  ~ Last modified 10/14/19 9:54 AM
+  -->
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/search"
+        android:icon="@drawable/ic_search_white"
+        android:title="@string/title_activity_search"
+        app:showAsAction="collapseActionView|always"
+        app:actionViewClass="androidx.appcompat.widget.SearchView" />
+    <item android:id="@+id/favourite"
+        android:icon="@drawable/ic_favorite_white"
+        android:title="@string/title_activity_favourite"
+        app:showAsAction="ifRoom" />
+    <item android:id="@+id/settings"
+        android:icon="@drawable/ic_settings_white"
+        android:title="@string/title_activity_settings"
+        app:showAsAction="ifRoom" />
+</menu>

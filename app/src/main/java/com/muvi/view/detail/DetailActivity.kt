@@ -1,3 +1,9 @@
+/*
+ * Created by Ezra Lazuardy on 10/14/19 9:55 AM
+ * Copyright (c) 2019 . All rights reserved.
+ * Last modified 10/14/19 9:54 AM
+ */
+
 package com.muvi.view.detail
 
 import android.app.Activity
@@ -12,7 +18,6 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
@@ -29,24 +34,24 @@ import com.muvi.model.detail.Movie
 import com.muvi.model.detail.Tv
 import com.muvi.model.discover.DiscoverMovieListResult
 import com.muvi.model.discover.DiscoverTvListResult
-import com.muvi.view.list.ListActivity
-import com.muvi.view.list.ListActivityViewPagerAdapter
+import com.muvi.view.favourite.FavouriteActivity
+import com.muvi.view.list.adapter.viewpager.ListActivityViewPagerAdapter
 import com.muvi.viewmodel.detail.DetailViewModel
-import com.muvi.viewmodel.detail.DetailViewModelFactory
 import kotlinx.android.synthetic.main.activity_detail.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.error
 import org.jetbrains.anko.sdk27.coroutines.onClick
+import org.koin.android.viewmodel.ext.android.viewModel
 import java.util.*
 
 class DetailActivity : AppCompatActivity(), AnkoLogger {
 
-    private lateinit var detailViewModel: DetailViewModel
     private lateinit var movie: Movie
     private lateinit var tv: Tv
     private var contentType: ContentType = ContentType.MOVIE
     private var isFavorite = false
+    private val detailViewModel: DetailViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,24 +60,14 @@ class DetailActivity : AppCompatActivity(), AnkoLogger {
     }
 
     private fun getData() {
-        val type = intent.getSerializableExtra("type")
-        if (type == null) {
-            error { "No type defined in Detail Activity" }
-            finish()
-        } else {
-            var id = 0
-            when (type) {
-                ContentType.MOVIE -> {
-                    if (intent.getStringExtra("openFrom") == ListActivity::class.java.simpleName) {
-                        val movie: DiscoverMovieListResult? = intent.getParcelableExtra("movie")
-                        if (movie == null) {
-                            error { "No movie data defined in Detail Activity" }
-                            finish()
-                        } else {
-                            id = movie.id
-                        }
-                    } else {
-                        val movie: MovieEntity? = intent.getParcelableExtra("movie")
+        val type = intent.getSerializableExtra(AppConfig.INTENT_EXTRA_CONTENT_TYPE)
+        val openFrom = intent.getStringExtra(AppConfig.INTENT_EXTRA_OPEN_FROM)
+        var id = 0
+        when (type) {
+            ContentType.MOVIE -> {
+                when(openFrom) {
+                    FavouriteActivity::class.java.simpleName -> {
+                        val movie: MovieEntity? = intent.getParcelableExtra(AppConfig.INTENT_EXTRA_DATA_MOVIE)
                         if (movie == null) {
                             error { "No movie data defined in Detail Activity" }
                             setResult(Activity.RESULT_CANCELED)
@@ -81,20 +76,24 @@ class DetailActivity : AppCompatActivity(), AnkoLogger {
                             id = movie.id
                         }
                     }
-                    setMovieDetailComponent(id)
-                }
-                ContentType.TV -> {
-                    contentType = ContentType.TV
-                    if (intent.getStringExtra("openFrom") == ListActivity::class.java.simpleName) {
-                        val tv: DiscoverTvListResult? = intent.getParcelableExtra("tv")
-                        if (tv == null) {
-                            error { "No tv data defined in Detail Activity" }
+                    else -> {
+                        val movie: DiscoverMovieListResult? = intent.getParcelableExtra(AppConfig.INTENT_EXTRA_DATA_MOVIE)
+                        if (movie == null) {
+                            error { "No movie data defined in Detail Activity" }
                             finish()
                         } else {
-                            id = tv.id
+                            id = movie.id
                         }
-                    } else {
-                        val tv: TvEntity? = intent.getParcelableExtra("tv")
+
+                    }
+                }
+                setMovieDetailComponent(id)
+            }
+            ContentType.TV -> {
+                contentType = ContentType.TV
+                when(openFrom) {
+                    FavouriteActivity::class.java.simpleName -> {
+                        val tv: TvEntity? = intent.getParcelableExtra(AppConfig.INTENT_EXTRA_DATA_TV)
                         if (tv == null) {
                             error { "No tv data defined in Detail Activity" }
                             setResult(Activity.RESULT_CANCELED)
@@ -103,143 +102,186 @@ class DetailActivity : AppCompatActivity(), AnkoLogger {
                             id = tv.id
                         }
                     }
-                    setTvDetailComponent(id)
+                    else -> {
+                        val tv: DiscoverTvListResult? = intent.getParcelableExtra(AppConfig.INTENT_EXTRA_DATA_TV)
+                        if (tv == null) {
+                            error { "No tv data defined in Detail Activity" }
+                            finish()
+                        } else {
+                            id = tv.id
+                        }
+                    }
                 }
-                else -> finish()
+                setTvDetailComponent(id)
+            }
+            else -> {
+                error { "No type defined in Detail Activity" }
+                finish()
             }
         }
     }
 
     private fun setMovieDetailComponent(id: Int) {
-        detailViewModel =
-            ViewModelProvider(
-                this,
-                DetailViewModelFactory(application, id)
-            ).get(DetailViewModel::class.java)
-        if (detailViewModel.loaded) hideLoading() else showLoading()
-        detailViewModel.movieDetail.observe(this, Observer {
-            detailViewModel.loaded = true
-            if (it == null) {
-                showError("EMPTY MOVIE DETAIL")
-            } else {
-                this.movie = it
-                Glide.with(this)
-                    .load(AppConfig.TMDB_API_IMAGE_BASE_URL + it.backdrop_path)
-                    .apply(RequestOptions().transform(CenterCrop()))
-                    .transition(DrawableTransitionOptions.withCrossFade())
-                    .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-                    .placeholder(R.drawable.background_poster_item_list)
-                    .error(R.drawable.background_poster_item_list)
-                    .into(imageBackdrop)
-                Glide.with(this)
-                    .load(AppConfig.TMDB_API_IMAGE_BASE_URL + it.poster_path)
-                    .apply(RequestOptions().transform(CenterCrop()).transform(RoundedCorners(14)))
-                    .transition(DrawableTransitionOptions.withCrossFade())
-                    .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-                    .placeholder(R.drawable.background_poster_item_list)
-                    .error(R.drawable.background_poster_item_list)
-                    .into(imagePoster)
+        with(detailViewModel) {
+            contentId = id
+            if(loaded) hideLoading() else showLoading()
+            movieDetail.observe(this@DetailActivity, Observer {
+                loaded = true
+                it?.let {
+                    this@DetailActivity.movie = it
+                    Glide.with(this@DetailActivity)
+                        .load(AppConfig.TMDB_API_IMAGE_BASE_URL + it.backdrop_path)
+                        .apply(RequestOptions().transform(CenterCrop()))
+                        .transition(DrawableTransitionOptions.withCrossFade())
+                        .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+                        .placeholder(R.drawable.background_poster_item_list)
+                        .error(R.drawable.background_poster_item_list)
+                        .into(imageBackdrop)
+                    Glide.with(this@DetailActivity)
+                        .load(AppConfig.TMDB_API_IMAGE_BASE_URL + it.poster_path)
+                        .apply(RequestOptions().transform(CenterCrop()).transform(RoundedCorners(14)))
+                        .transition(DrawableTransitionOptions.withCrossFade())
+                        .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+                        .placeholder(R.drawable.background_poster_item_list)
+                        .error(R.drawable.background_poster_item_list)
+                        .into(imagePoster)
 
-                titleText.text = it.original_title
-                shortTitleText.text = it.original_title
-                for (genre in it.genres) addGenreChip(genre.name)
-                ratingText.text = resources.getString(
-                    R.string.rating_value_activity_detail,
-                    it.vote_average.toString()
-                )
-                votingText.text = it.vote_count.toString()
-                languageText.text = it.original_language.toUpperCase(Locale.getDefault())
-                releaseDateText.text = it.release_date
-                statusText.text = it.status
-                overviewText.text = it.overview.trim()
+                    titleText.text = it.original_title
+                    shortTitleText.text = it.original_title
+                    for (genre in it.genres) addGenreChip(genre.name)
+                    ratingText.text = resources.getString(
+                        R.string.rating_value_activity_detail,
+                        it.vote_average.toString()
+                    )
+                    votingText.text = it.vote_count.toString()
+                    languageText.text = it.original_language.toUpperCase(Locale.getDefault())
 
-                var productionCompany = ""
-                for (company in it.production_companies) productionCompany += "${company.name.trim()}, "
-                if (productionCompany.isNotEmpty())
-                    productionCompanyText.text =
-                        productionCompany.substring(0, productionCompany.length - 2)
-                else
-                    productionCompanyText.visibility = View.GONE
+                    if(it.release_date.isNotEmpty()) {
+                        releaseDateText.text = detailViewModel.getFormattedDate(it.release_date)
+                    } else {
+                        releaseDateTextName.visibility = View.GONE
+                        releaseDateText.visibility = View.GONE
+                    }
 
-                val icon: Drawable? = ContextCompat.getDrawable(
-                    this,
-                    ListActivityViewPagerAdapter.tabIcons[0]
-                )
-                icon?.colorFilter = PorterDuffColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP)
-                activityTypeChip.chipIcon = icon
-                activityTypeChip.text =
-                    resources.getString(R.string.tab_text_1_activity_list)
+                    if(it.status.isNotEmpty()) {
+                        statusText.text = it.status
+                    } else {
+                        statusTextName.visibility = View.GONE
+                        statusText.visibility = View.GONE
+                    }
 
-                checkIsFavorite(movie.id, ContentType.MOVIE)
-                hideLoading()
-            }
-        })
+                    var productionCompany = ""
+                    for (company in it.production_companies) productionCompany += "${company.name.trim()}, "
+                    if (it.production_companies.isNotEmpty()) {
+                        productionCompanyText.text =
+                            productionCompany.substring(0, productionCompany.length - 2)
+                    } else {
+                        productionCompanyTextName.visibility = View.GONE
+                        productionCompanyText.visibility = View.GONE
+                    }
+
+                    if(it.overview.isNotEmpty()) {
+                        overviewText.text = it.overview.trim()
+                    } else {
+                        overviewTextName.visibility = View.GONE
+                        overviewText.visibility = View.GONE
+                    }
+
+                    val icon: Drawable? = ContextCompat.getDrawable(
+                        this@DetailActivity,
+                        ListActivityViewPagerAdapter.tabIcons[0]
+                    )
+                    icon?.colorFilter = PorterDuffColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP)
+                    activityTypeChip.chipIcon = icon
+                    activityTypeChip.text =
+                        resources.getString(R.string.tab_text_1_activity_list)
+                    checkIsFavorite(movie.id, ContentType.MOVIE)
+                    hideLoading()
+                } ?: showError("EMPTY MOVIE DETAIL")
+            })
+        }
     }
 
     private fun setTvDetailComponent(id: Int) {
-        detailViewModel =
-            ViewModelProvider(
-                this,
-                DetailViewModelFactory(application, id)
-            ).get(DetailViewModel::class.java)
-        if (detailViewModel.loaded) hideLoading() else showLoading()
-        detailViewModel.tvDetail.observe(this, Observer {
-            detailViewModel.loaded = true
-            if (it == null) {
-                showError("EMPTY TV DETAIL")
-            } else {
-                this.tv = it
-                Glide.with(this)
-                    .load(AppConfig.TMDB_API_IMAGE_BASE_URL + it.backdrop_path)
-                    .apply(RequestOptions().transform(CenterCrop()))
-                    .transition(DrawableTransitionOptions.withCrossFade())
-                    .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-                    .placeholder(R.drawable.background_poster_item_list)
-                    .error(R.drawable.background_poster_item_list)
-                    .into(imageBackdrop)
-                Glide.with(this)
-                    .load(AppConfig.TMDB_API_IMAGE_BASE_URL + it.poster_path)
-                    .apply(RequestOptions().transform(CenterCrop()).transform(RoundedCorners(14)))
-                    .transition(DrawableTransitionOptions.withCrossFade())
-                    .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-                    .placeholder(R.drawable.background_poster_item_list)
-                    .error(R.drawable.background_poster_item_list)
-                    .into(imagePoster)
+        with(detailViewModel) {
+            contentId = id
+            if(loaded) hideLoading() else showLoading()
+            tvDetail.observe(this@DetailActivity, Observer {
+                detailViewModel.loaded = true
+                it?.let {
+                    this@DetailActivity.tv = it
+                    Glide.with(this@DetailActivity)
+                        .load(AppConfig.TMDB_API_IMAGE_BASE_URL + it.backdrop_path)
+                        .apply(RequestOptions().transform(CenterCrop()))
+                        .transition(DrawableTransitionOptions.withCrossFade())
+                        .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+                        .placeholder(R.drawable.background_poster_item_list)
+                        .error(R.drawable.background_poster_item_list)
+                        .into(imageBackdrop)
+                    Glide.with(this@DetailActivity)
+                        .load(AppConfig.TMDB_API_IMAGE_BASE_URL + it.poster_path)
+                        .apply(RequestOptions().transform(CenterCrop()).transform(RoundedCorners(14)))
+                        .transition(DrawableTransitionOptions.withCrossFade())
+                        .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+                        .placeholder(R.drawable.background_poster_item_list)
+                        .error(R.drawable.background_poster_item_list)
+                        .into(imagePoster)
 
-                titleText.text = it.original_name
-                shortTitleText.text = it.original_name
-                for (genre in it.genres) addGenreChip(genre.name)
-                ratingText.text = resources.getString(
-                    R.string.rating_value_activity_detail,
-                    it.vote_average.toString()
-                )
-                votingText.text = it.vote_count.toString()
-                languageText.text = it.original_language.toUpperCase(Locale.getDefault())
-                releaseDateText.text = it.first_air_date
-                statusText.text = it.status
-                overviewText.text = it.overview.trim()
+                    titleText.text = it.original_name
+                    shortTitleText.text = it.original_name
+                    for (genre in it.genres) addGenreChip(genre.name)
+                    ratingText.text = resources.getString(
+                        R.string.rating_value_activity_detail,
+                        it.vote_average.toString()
+                    )
+                    votingText.text = it.vote_count.toString()
+                    languageText.text = it.original_language.toUpperCase(Locale.getDefault())
 
-                var productionCompany = ""
-                for (company in it.production_companies) productionCompany += "${company.name.trim()}, "
-                if (productionCompany.isNotEmpty())
-                    productionCompanyText.text =
-                        productionCompany.substring(0, productionCompany.length - 2)
-                else
-                    productionCompanyText.visibility = View.GONE
 
-                val icon: Drawable? = ContextCompat.getDrawable(
-                    this,
-                    ListActivityViewPagerAdapter.tabIcons[1]
-                )
-                icon?.colorFilter = PorterDuffColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP)
-                activityTypeChip.chipIcon = icon
-                activityTypeChip.text =
-                    resources.getString(R.string.tab_text_2_activity_list)
+                    if(it.first_air_date.isNotEmpty()) {
+                        releaseDateText.text = detailViewModel.getFormattedDate(it.first_air_date)
+                    } else {
+                        releaseDateTextName.visibility = View.GONE
+                        releaseDateText.visibility = View.GONE
+                    }
 
-                checkIsFavorite(tv.id, ContentType.TV)
-                hideLoading()
-            }
-        })
+                    if(it.status.isNotEmpty()) {
+                        statusText.text = it.status
+                    } else {
+                        statusTextName.visibility = View.GONE
+                        statusText.visibility = View.GONE
+                    }
+
+                    var productionCompany = ""
+                    for (company in it.production_companies) productionCompany += "${company.name.trim()}, "
+                    if (it.production_companies.isNotEmpty()) {
+                        productionCompanyText.text =
+                            productionCompany.substring(0, productionCompany.length - 2)
+                    } else {
+                        productionCompanyTextName.visibility = View.GONE
+                        productionCompanyText.visibility = View.GONE
+                    }
+
+                    if(it.overview.isNotEmpty()) {
+                        overviewText.text = it.overview.trim()
+                    } else {
+                        overviewTextName.visibility = View.GONE
+                        overviewText.visibility = View.GONE
+                    }
+
+                    val icon: Drawable? = ContextCompat.getDrawable(
+                        this@DetailActivity,
+                        ListActivityViewPagerAdapter.tabIcons[1]
+                    )
+                    icon?.colorFilter = PorterDuffColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP)
+                    activityTypeChip.chipIcon = icon
+                    activityTypeChip.text =
+                        resources.getString(R.string.tab_text_2_activity_list)
+                    checkIsFavorite(tv.id, ContentType.TV)
+                    hideLoading()
+                } ?: showError("EMPTY TV DETAIL")
+            })
+        }
     }
 
     private fun checkIsFavorite(id: Int, type: Any) {
@@ -248,7 +290,7 @@ class DetailActivity : AppCompatActivity(), AnkoLogger {
                 detailViewModel.checkIsFavouriteMovie(id).observe(this, Observer {
                     it?.let {
                         isFavorite = true
-                        favouriteButton.setImageDrawable(getDrawable(R.drawable.ic_favorite_white))
+                        favouriteButton.setImageDrawable(getDrawable(R.drawable.ic_favorite_accent))
                     }
                 })
             }
@@ -256,7 +298,7 @@ class DetailActivity : AppCompatActivity(), AnkoLogger {
                 detailViewModel.checkIsFavouriteTv(id).observe(this, Observer {
                     it?.let {
                         isFavorite = true
-                        favouriteButton.setImageDrawable(getDrawable(R.drawable.ic_favorite_white))
+                        favouriteButton.setImageDrawable(getDrawable(R.drawable.ic_favorite_accent))
                     }
                 })
             }
@@ -267,7 +309,7 @@ class DetailActivity : AppCompatActivity(), AnkoLogger {
         detailViewModel.addMovieToFavourite(movieEntity).observe(this, Observer {
             if (it != null) {
                 isFavorite = true
-                favouriteButton.setImageDrawable(getDrawable(R.drawable.ic_favorite_white))
+                favouriteButton.setImageDrawable(getDrawable(R.drawable.ic_favorite_accent))
                 layoutActivityDetail.snackbar(
                     getString(R.string.snackbar_added_to_favourite),
                     getString(R.string.snackbar_button_undo)
@@ -295,7 +337,7 @@ class DetailActivity : AppCompatActivity(), AnkoLogger {
         detailViewModel.addTvToFavourite(tvEntity).observe(this, Observer {
             if (it != null) {
                 isFavorite = true
-                favouriteButton.setImageDrawable(getDrawable(R.drawable.ic_favorite_white))
+                favouriteButton.setImageDrawable(getDrawable(R.drawable.ic_favorite_accent))
                 layoutActivityDetail.snackbar(
                     getString(R.string.snackbar_added_to_favourite),
                     getString(R.string.snackbar_button_undo)
@@ -332,7 +374,7 @@ class DetailActivity : AppCompatActivity(), AnkoLogger {
                         .observe(this, Observer { response ->
                             if (response != null) {
                                 isFavorite = true
-                                favouriteButton.setImageDrawable(getDrawable(R.drawable.ic_favorite_white))
+                                favouriteButton.setImageDrawable(getDrawable(R.drawable.ic_favorite_accent))
                             } else {
                                 layoutActivityDetail.snackbar(getString(R.string.snackbar_unknown_error))
                             }
@@ -359,7 +401,7 @@ class DetailActivity : AppCompatActivity(), AnkoLogger {
                     detailViewModel.addTvToFavourite(tvEntity).observe(this, Observer { response ->
                         if (response != null) {
                             isFavorite = true
-                            favouriteButton.setImageDrawable(getDrawable(R.drawable.ic_favorite_white))
+                            favouriteButton.setImageDrawable(getDrawable(R.drawable.ic_favorite_accent))
                         } else {
                             layoutActivityDetail.snackbar(getString(R.string.snackbar_unknown_error))
                         }

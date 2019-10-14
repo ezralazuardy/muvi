@@ -1,71 +1,261 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--
+  ~ Created by Ezra Lazuardy on 10/14/19 9:55 AM
+  ~ Copyright (c) 2019 . All rights reserved.
+  ~ Last modified 10/14/19 9:54 AM
+  -->
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/layoutActivitySettings"
     tools:context=".view.settings.SettingsActivity">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/languageTextActivitySettings"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:fontFamily="@font/montserrat_bold"
-        android:gravity="start"
-        android:includeFontPadding="false"
-        android:text="@string/language_title_activity_settings"
-        android:textAlignment="viewStart"
-        android:textColor="@color/colorTextPrimary"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@id/rowAppLanguageActivitySettings"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/rowAppLanguageActivitySettings"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:foreground="?attr/selectableItemBackground"
-        android:padding="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/languageTextActivitySettings"
-        tools:ignore="UnusedAttribute">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/rowAppLanguageTitleActivitySettings"
+            android:id="@+id/languageTextActivitySettings"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="16dp"
             android:fontFamily="@font/montserrat_bold"
             android:gravity="start"
             android:includeFontPadding="false"
-            android:text="@string/row_app_language_title_activity_settings"
+            android:text="@string/title_language_activity_settings"
             android:textAlignment="viewStart"
-            android:textColor="@color/colorTextBlack"
+            android:textColor="@color/colorTextPrimary"
             android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/rowAppLanguageActivitySettings"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/rowAppLanguageDescriptionActivitySettings"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            style="@style/RowActivitySettingsStyle"
+            android:id="@+id/rowAppLanguageActivitySettings"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:fontFamily="@font/montserrat"
-            android:gravity="start"
-            android:includeFontPadding="false"
-            android:text="@string/row_app_language_description_activity_settings"
-            android:textAlignment="viewStart"
-            android:textColor="@color/colorTextBlack"
-            android:textSize="16sp"
+            android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rowAppLanguageTitleActivitySettings" />
+            app:layout_constraintTop_toBottomOf="@id/languageTextActivitySettings"
+            tools:ignore="UnusedAttribute">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/rowAppLanguageTitleActivitySettings"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="start"
+                android:includeFontPadding="false"
+                android:text="@string/row_app_language_title_activity_settings"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorTextBlack"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/rowAppLanguageDescriptionActivitySettings"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:fontFamily="@font/montserrat"
+                android:gravity="start"
+                android:includeFontPadding="false"
+                android:text="@string/row_app_language_description_activity_settings"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorTextBlack"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rowAppLanguageTitleActivitySettings" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/notificationTextActivitySettings"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:gravity="start"
+            android:includeFontPadding="false"
+            android:text="@string/title_notification_activity_settings"
+            android:textAlignment="viewStart"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/rowAppReminderActivitySettings"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rowAppLanguageActivitySettings" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            style="@style/RowActivitySettingsStyle"
+            android:id="@+id/rowAppReminderActivitySettings"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/notificationTextActivitySettings"
+            tools:ignore="UnusedAttribute">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/rowAppReminderTitleActivitySettings"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="start"
+                android:includeFontPadding="false"
+                android:text="@string/row_app_reminder_title_activity_settings"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorTextBlack"
+                android:textSize="16sp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toStartOf="@id/switchReminder"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/rowAppReminderDescriptionActivitySettings"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:fontFamily="@font/montserrat"
+                android:gravity="start"
+                android:includeFontPadding="false"
+                android:text="@string/row_app_reminder_description_activity_settings"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorTextBlack"
+                android:textSize="16sp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toStartOf="@id/switchReminder"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rowAppReminderTitleActivitySettings" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switchReminder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            style="@style/RowActivitySettingsStyle"
+            android:id="@+id/rowAppReminderTimeActivitySettings"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rowAppReminderActivitySettings"
+            tools:ignore="UnusedAttribute">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/rowAppReminderTimeTitleActivitySettings"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="start"
+                android:includeFontPadding="false"
+                android:text="@string/row_app_reminder_time_title_activity_settings"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorTextBlack"
+                android:textSize="16sp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toStartOf="@id/textReminderValue"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/rowAppReminderTimeDescriptionActivitySettings"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:fontFamily="@font/montserrat"
+                android:gravity="start"
+                android:includeFontPadding="false"
+                android:text="@string/row_app_reminder_time_description_activity_settings"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorTextBlack"
+                android:textSize="16sp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toStartOf="@id/textReminderValue"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rowAppReminderTimeTitleActivitySettings" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textReminderValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:gravity="start"
+                android:includeFontPadding="false"
+                android:text="@string/row_app_reminder_time_value_activity_settings"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorTextBlack"
+                android:textSize="14sp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            style="@style/RowActivitySettingsStyle"
+            android:id="@+id/rowAppNotifyReleaseActivitySettings"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rowAppReminderTimeActivitySettings"
+            tools:ignore="UnusedAttribute">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/rowAppNotifyReleaseTitleActivitySettings"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="start"
+                android:includeFontPadding="false"
+                android:text="@string/row_app_notify_release_title_activity_settings"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorTextBlack"
+                android:textSize="16sp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toStartOf="@id/switchNewRelease"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/rowAppNotifyReleaseDescriptionActivitySettings"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:fontFamily="@font/montserrat"
+                android:gravity="start"
+                android:includeFontPadding="false"
+                android:text="@string/row_app_notify_release_description_activity_settings"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorTextBlack"
+                android:textSize="16sp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toStartOf="@id/switchNewRelease"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rowAppNotifyReleaseTitleActivitySettings" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switchNewRelease"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

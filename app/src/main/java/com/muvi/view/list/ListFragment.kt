@@ -1,3 +1,9 @@
+/*
+ * Created by Ezra Lazuardy on 10/14/19 9:55 AM
+ * Copyright (c) 2019 . All rights reserved.
+ * Last modified 10/14/19 9:54 AM
+ */
+
 package com.muvi.view.list
 
 import android.os.Bundle
@@ -5,26 +11,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.muvi.R
-import com.muvi.view.list.adapter.movie.ListMovieAdapter
-import com.muvi.view.list.adapter.tv.ListTvAdapter
+import com.muvi.config.ContentType
+import com.muvi.view.list.adapter.recyclerview.movie.ListMovieAdapter
+import com.muvi.view.list.adapter.recyclerview.tv.ListTvAdapter
 import com.muvi.viewmodel.list.ListViewModel
 import kotlinx.android.synthetic.main.fragment_activity_list.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.error
+import org.koin.android.viewmodel.ext.android.viewModel
 
-class ListFragment : Fragment(), AnkoLogger {
+class ListFragment(private val onListFragmentChangeListener: OnListFragmentChangeListener) : Fragment(), AnkoLogger {
 
     companion object {
 
         private const val ARG_SECTION_NUMBER = "section_number"
 
         @JvmStatic
-        fun newInstance(sectionNumber: Int): ListFragment {
-            return ListFragment().apply {
+        fun newInstance(sectionNumber: Int, onListFragmentChangeListener: OnListFragmentChangeListener): ListFragment {
+            return ListFragment(onListFragmentChangeListener).apply {
                 arguments = Bundle().apply {
                     putInt(ARG_SECTION_NUMBER, sectionNumber)
                 }
@@ -32,9 +39,9 @@ class ListFragment : Fragment(), AnkoLogger {
         }
     }
 
-    private val listViewModel: ListViewModel by viewModels()
     private val listMovieAdapter by lazy { ListMovieAdapter() }
     private val listTvAdapter by lazy { ListTvAdapter() }
+    private val listViewModel: ListViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -102,6 +109,11 @@ class ListFragment : Fragment(), AnkoLogger {
     private fun hideLoading() {
         loadingActivityList.visibility = View.GONE
         loadingActivityList.pauseAnimation()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (arguments?.getInt(ARG_SECTION_NUMBER) ?: 1 == 1) onListFragmentChangeListener.onFragmentChange(ContentType.MOVIE) else onListFragmentChangeListener.onFragmentChange(ContentType.TV)
     }
 
     override fun onPause() {

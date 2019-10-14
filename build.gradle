@@ -1,13 +1,35 @@
+/*
+ * Created by Ezra Lazuardy on 10/14/19 9:55 AM
+ * Copyright (c) 2019 . All rights reserved.
+ * Last modified 10/14/19 9:54 AM
+ */
+
 buildscript {
+    ext.kotlin_version = '1.3.50'
+
     ext {
+        android_material = '1.0.0'
+        androidx = '1.1.0'
+        androidx_arch = '2.1.0'
+        androidx_constraint = '2.0.0-beta2'
+        androidx_lifecycle = '2.2.0-beta01'
+        anko = '0.10.8'
+        elastic_view = '0.2.0'
+        glide = '4.10.0'
+        koin = '2.0.1'
         kotlin_version = '1.3.50'
-        coroutines = '1.2.0'
-        ankoVersion = '0.10.8'
-        ktx = '1.2.0-alpha04'
-        archLifecycleVersion = '2.2.0-alpha05'
-        androidxArchVersion = '2.0.0'
-        roomVersion = '2.2.0-rc01'
-        retrofit = '2.6.1'
+        kotlin_coroutines = '1.3.2'
+        ktx = '1.2.0-beta01'
+        lottie = '3.0.7'
+        retrofit = '2.6.2'
+        room = '2.2.0-rc01'
+        rounded_image_view = '2.3.0'
+        threetenabp = '1.2.1'
+        work = '2.2.0'
+
+        junit = '4.13-beta-3'
+        test_runner = '1.3.0-alpha02'
+        espresso = '3.3.0-alpha02'
     }
     repositories {
         google()

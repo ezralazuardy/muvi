@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by Ezra Lazuardy on 10/14/19 9:55 AM
+  ~ Copyright (c) 2019 . All rights reserved.
+  ~ Last modified 10/14/19 9:54 AM
+  -->
+
 <resources>
     <string name="app_name" translatable="false">Muvi</string>
     <string name="tab_text_1_activity_list">Movie</string>
@@ -6,7 +12,7 @@
     <string name="title_activity_detail">Detail</string>
     <string name="title_activity_favourite">Favourite</string>
     <string name="title_activity_settings">Settings</string>
-    <string name="rating_value_activity_detail">%1$s / 10</string>
+    <string name="rating_value_activity_detail">%1$s / 10.0</string>
     <string name="rating_text_activity_detail">Rating</string>
     <string name="voted_text_activity_detail">Voted</string>
     <string name="language_text_activity_detail">Language</string>
@@ -14,9 +20,9 @@
     <string name="status_text_activity_detail">Status :</string>
     <string name="production_companies_text_activity_detail">Production\nCompanies :</string>
     <string name="overview_text_activity_detail">Overview</string>
-    <string name="language_title_activity_settings">Languages</string>
-    <string name="row_app_language_title_activity_settings">Application Language</string>
-    <string name="row_app_language_description_activity_settings">English (United State)</string>
+    <string name="title_language_activity_settings">Languages</string>
+    <string name="row_app_language_title_activity_settings">Application language</string>
+    <string name="row_app_language_description_activity_settings">English</string>
     <string name="dialog_confirm_exit_app">Are you sure want to exit?</string>
     <string name="snackbar_added_to_favourite">Added to favourite</string>
     <string name="empty_favourite_movie_placeholder_title">Favourite Movie is Empty</string>
@@ -27,4 +33,30 @@
     <string name="snackbar_unknown_error">Oops! an error has occurred</string>
     <string name="snackbar_retry_button">Retry</string>
     <string name="snackbar_deleted_from_favourite">Deleted from favourite</string>
+    <string name="row_app_reminder_title_activity_settings">Set remainder</string>
+    <string name="row_app_reminder_description_activity_settings">Get notified by Muvi\'s content</string>
+    <string name="row_app_notify_release_title_activity_settings">Notify on movie new releases</string>
+    <string name="row_app_notify_release_description_activity_settings">Show notification new releases avaiable</string>
+    <string name="title_notification_activity_settings">Notification</string>
+    <string name="row_app_reminder_time_title_activity_settings">Set remainder time</string>
+    <string name="row_app_reminder_time_description_activity_settings">Set the remainder notification time</string>
+    <string name="row_app_reminder_time_value_activity_settings" translatable="false">07:00 AM</string>
+    <string name="snackbar_set_reminder">Reminder enabled</string>
+    <string name="snackbar_set_reminder_time">Reminder set to show at %1$s</string>
+    <string name="snackbar_unset_reminder">Reminder disabled</string>
+    <string name="snackbar_set_new_release">New release notification enabled</string>
+    <string name="snackbar_unset_new_release">New release notification disabled</string>
+    <string name="search_hint_movie">Search movies</string>
+    <string name="search_hint_tv">Search tv shows</string>
+    <string name="notification_reminder_title">Muvi Reminder</string>
+    <string name="notification_reminder_description">Dont forget to discover new movies and tv shows at Muvi</string>
+    <string name="notification_new_release_title">New Release - %1$s</string>
+    <string name="appwidget_text" translatable="false">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="title_activity_search">Search</string>
+    <string name="snackbar_empty_query_movie">Please type the move title</string>
+    <string name="snackbar_empty_query_tv">Please type the tv shows name</string>
+    <string name="text_search_result_activity_search_results">Showing results for: &lt;u>%1$s&lt;/u></string>
+    <string name="search_input_hint_movies">Type a movie title</string>
+    <string name="search_input_hint_tv">Type a tv shows name</string>
 </resources>

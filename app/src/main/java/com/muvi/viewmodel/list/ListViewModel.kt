@@ -1,3 +1,9 @@
+/*
+ * Created by Ezra Lazuardy on 10/14/19 9:55 AM
+ * Copyright (c) 2019 . All rights reserved.
+ * Last modified 10/14/19 9:54 AM
+ */
+
 package com.muvi.viewmodel.list
 
 import android.app.Application
@@ -6,8 +12,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.muvi.BuildConfig
 import com.muvi.config.AppConfig
-import com.muvi.database.local.LocalDatabase
-import com.muvi.database.remote.RemoteDatabase
 import com.muvi.model.discover.DiscoverMovieListResult
 import com.muvi.model.discover.DiscoverTvListResult
 import com.muvi.model.genre.Genre
@@ -16,17 +20,13 @@ import com.muvi.repository.TvRepository
 import com.muvi.viewmodel.base.OnLoadViewModel
 import kotlinx.coroutines.Dispatchers
 
-class ListViewModel(application: Application) : AndroidViewModel(application), OnLoadViewModel {
+class ListViewModel(
+    application: Application,
+    private val movieRepository: MovieRepository,
+    private val tvRepository: TvRepository
+) : AndroidViewModel(application), OnLoadViewModel {
 
     override var loaded = false
-    private val movieRepository: MovieRepository = MovieRepository.getInstance(
-        LocalDatabase.getDatabase(application).movieDao(),
-        RemoteDatabase.movieDao()
-    )
-    private val tvRepository: TvRepository = TvRepository.getInstance(
-        LocalDatabase.getDatabase(application).tvDao(),
-        RemoteDatabase.tvDao()
-    )
     val discoverMovies: LiveData<List<DiscoverMovieListResult>> by lazy { discoverMovies() }
     val discoverTvs: LiveData<List<DiscoverTvListResult>> by lazy { discoverTvs() }
     val movieGenres: LiveData<List<Genre>> by lazy { movieGenres() }

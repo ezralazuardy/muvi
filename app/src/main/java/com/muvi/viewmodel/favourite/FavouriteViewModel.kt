@@ -1,3 +1,9 @@
+/*
+ * Created by Ezra Lazuardy on 10/14/19 9:55 AM
+ * Copyright (c) 2019 . All rights reserved.
+ * Last modified 10/14/19 9:54 AM
+ */
+
 package com.muvi.viewmodel.favourite
 
 import android.app.Application
@@ -5,28 +11,22 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.muvi.database.local.LocalDatabase
 import com.muvi.database.local.entity.MovieEntity
 import com.muvi.database.local.entity.TvEntity
-import com.muvi.database.remote.RemoteDatabase
 import com.muvi.repository.MovieRepository
 import com.muvi.repository.TvRepository
+import com.muvi.repository.utils.UtilsRepository
 import com.muvi.viewmodel.base.OnLoadViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class FavouriteViewModel(application: Application) : AndroidViewModel(application),
-    OnLoadViewModel {
+class FavouriteViewModel(
+    application: Application,
+    private val movieRepository: MovieRepository,
+    private val tvRepository: TvRepository
+) : AndroidViewModel(application), OnLoadViewModel {
 
     override var loaded = false
-    private val movieRepository: MovieRepository = MovieRepository.getInstance(
-        LocalDatabase.getDatabase(application).movieDao(),
-        RemoteDatabase.movieDao()
-    )
-    private val tvRepository: TvRepository = TvRepository.getInstance(
-        LocalDatabase.getDatabase(application).tvDao(),
-        RemoteDatabase.tvDao()
-    )
     private val _favouriteMovies = MutableLiveData<List<MovieEntity>>()
     private val _favouriteTvs = MutableLiveData<List<TvEntity>>()
     val favouriteMovies: LiveData<List<MovieEntity>> = _favouriteMovies
