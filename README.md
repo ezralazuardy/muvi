@@ -15,3 +15,7 @@ A movie catalogue Android app using TMDB API. Built with MVVM architecture patte
   - [**Retrofit**](https://square.github.io/retrofit/) (fetching API data)
   - [**Room**](https://developer.android.com/topic/libraries/architecture/room) (local database)
   - [**RoundedImageView**](https://github.com/vinc3m1/RoundedImageView) (rounded imageview)
+
+*Please add your TMDB API key in **gradle.properties**. *If you don't have the key, create it at [TMDB API](https://developers.themoviedb.org/3/getting-started/introduction)*. Example:*
+
+**TMDB_API_KEY="your-api-key-here"**
