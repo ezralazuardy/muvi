@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Created by Ezra Lazuardy on 10/14/19 9:55 AM
+  ~ Created by Ezra Lazuardy on 10/16/19 2:09 AM
   ~ Copyright (c) 2019 . All rights reserved.
-  ~ Last modified 10/14/19 9:54 AM
+  ~ Last modified 10/16/19 1:46 AM
   -->
 
 <resources>
@@ -59,4 +59,6 @@
     <string name="text_search_result_activity_search_results">Showing results for: &lt;u>%1$s&lt;/u></string>
     <string name="search_input_hint_movies">Type a movie title</string>
     <string name="search_input_hint_tv">Type a tv shows name</string>
+    <string name="content_provider_favourite_read" translatable="false">com.muvi.content.provider.read</string>
+    <string name="content_provider_favourite_write" translatable="false">com.muvi.content.provider.write</string>
 </resources>

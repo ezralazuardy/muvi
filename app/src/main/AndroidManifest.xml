@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Created by Ezra Lazuardy on 10/14/19 9:55 AM
+  ~ Created by Ezra Lazuardy on 10/16/19 2:09 AM
   ~ Copyright (c) 2019 . All rights reserved.
-  ~ Last modified 10/14/19 9:54 AM
+  ~ Last modified 10/16/19 1:49 AM
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
@@ -15,10 +15,12 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <permission
-        android:name="com.muvi.READ_DATABASE"
+        android:name="com.muvi.content.provider.read"
+        android:label="@string/content_provider_favourite_read"
         android:protectionLevel="normal" />
     <permission
-        android:name="com.muvi.WRITE_DATABASE"
+        android:name="com.muvi.content.provider.write"
+        android:label="@string/content_provider_favourite_write"
         android:protectionLevel="normal" />
 
     <application
@@ -94,10 +96,10 @@
             android:permission="android.permission.BIND_REMOTEVIEWS" />
 
         <provider
-            android:authorities="com.muvi.favourite.provider"
             android:name=".provider.FavouriteProvider"
+            android:authorities="com.muvi.favourite.provider"
             android:exported="true"
-            android:readPermission="com.muvi.READ_DATABASE"
-            android:writePermission="com.muvi.WRITE_DATABASE" />
+            android:readPermission="@string/content_provider_favourite_read"
+            android:writePermission="@string/content_provider_favourite_write" />
     </application>
 </manifest>

@@ -1,7 +1,7 @@
 /*
- * Created by Ezra Lazuardy on 10/14/19 9:55 AM
+ * Created by Ezra Lazuardy on 10/16/19 2:09 AM
  * Copyright (c) 2019 . All rights reserved.
- * Last modified 10/14/19 9:54 AM
+ * Last modified 10/16/19 1:58 AM
  */
 
 package com.muvi.favourite.view
@@ -72,6 +72,8 @@ class FavouriteListFragment : Fragment() {
                 emptyListPlaceholder.visibility = View.VISIBLE
             } else {
                 if (!favouriteListViewModel.loaded) favouriteListViewModel.loaded = true
+                if (emptyListPlaceholder.visibility == View.VISIBLE)
+                    emptyListPlaceholder.visibility = View.GONE
                 favouriteListMovieAdapter.setData(it, activity as FavouriteListActivity)
             }
             hideLoading()
@@ -88,6 +90,8 @@ class FavouriteListFragment : Fragment() {
                 emptyListPlaceholder.visibility = View.VISIBLE
             } else {
                 if (!favouriteListViewModel.loaded) favouriteListViewModel.loaded = true
+                if (emptyListPlaceholder.visibility == View.VISIBLE)
+                    emptyListPlaceholder.visibility = View.GONE
                 favouriteListTvAdapter.setData(it, activity as FavouriteListActivity)
             }
             hideLoading()
