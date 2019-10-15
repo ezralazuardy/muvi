@@ -4,6 +4,8 @@
  * Last modified 10/14/19 9:54 AM
  */
 
+package com.muvi.model.discover
+
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
