@@ -1,7 +1,7 @@
 /*
- * Created by Ezra Lazuardy on 10/14/19 9:55 AM
+ * Created by Ezra Lazuardy on 10/31/19, 12:23 AM
  * Copyright (c) 2019 . All rights reserved.
- * Last modified 10/14/19 9:54 AM
+ * Last modified 10/30/19, 10:27 PM
  */
 
 package com.muvi.viewmodel.favourite
@@ -15,7 +15,6 @@ import com.muvi.database.local.entity.MovieEntity
 import com.muvi.database.local.entity.TvEntity
 import com.muvi.repository.MovieRepository
 import com.muvi.repository.TvRepository
-import com.muvi.repository.utils.UtilsRepository
 import com.muvi.viewmodel.base.OnLoadViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

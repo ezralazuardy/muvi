@@ -1,7 +1,7 @@
 /*
- * Created by Ezra Lazuardy on 10/14/19 9:55 AM
+ * Created by Ezra Lazuardy on 10/31/19, 12:23 AM
  * Copyright (c) 2019 . All rights reserved.
- * Last modified 10/14/19 9:53 AM
+ * Last modified 10/30/19, 10:27 PM
  */
 
 package com.muvi.repository.utils
@@ -11,7 +11,6 @@ import android.content.Intent
 import android.os.Build
 import android.text.Html
 import android.text.Spanned
-import android.util.Log
 import com.muvi.config.AppConfig
 import com.muvi.view.widget.StackViewWidget
 import java.text.ParseException

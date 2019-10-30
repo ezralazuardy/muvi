@@ -1,19 +1,20 @@
 /*
- * Created by Ezra Lazuardy on 10/14/19 9:55 AM
+ * Created by Ezra Lazuardy on 10/31/19, 12:23 AM
  * Copyright (c) 2019 . All rights reserved.
- * Last modified 10/14/19 9:54 AM
+ * Last modified 10/31/19, 12:12 AM
  */
 
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlinx-serialization'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
 
+    //noinspection GroovyMissingReturnStatement
     defaultConfig {
         applicationId "com.muvi.favourite"
         minSdkVersion 21
@@ -37,11 +38,11 @@ android {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
     }
-
     kotlinOptions {
         jvmTarget = "1.8"
     }
 
+    //noinspection GroovyMissingReturnStatement
     packagingOptions {
         exclude 'META-INF/atomicfu.kotlin_module'
     }
@@ -49,10 +50,17 @@ android {
     androidExtensions {
         experimental = true
     }
+
+    //noinspection GroovyMissingReturnStatement
+    testOptions {
+        unitTests.all {
+            useJUnitPlatform()
+        }
+    }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     // Androidx
     implementation "androidx.appcompat:appcompat:$androidx"
@@ -80,6 +88,7 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$glide"
 
     // Koin
+    implementation "org.koin:koin-test:$koin"
     implementation "org.koin:koin-android:$koin"
     implementation "org.koin:koin-android-scope:$koin"
     implementation "org.koin:koin-android-viewmodel:$koin"
@@ -87,7 +96,7 @@ dependencies {
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.12.0"
+    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.12.0'
 
     // Kotlin Coroutines
     api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlin_coroutines"
@@ -95,14 +104,14 @@ dependencies {
 
     // Ktx
     implementation "androidx.core:core-ktx:$ktx"
-    implementation "androidx.fragment:fragment-ktx:$ktx"
+    implementation "androidx.fragment:fragment-ktx:$fragment_ktx"
     implementation "androidx.work:work-runtime-ktx:$work"
 
     // Lottie
     implementation "com.airbnb.android:lottie:$lottie"
 
     // MaterialSearchView
-    implementation "com.miguelcatalan:materialsearchview:1.4.0"
+    implementation 'com.miguelcatalan:materialsearchview:1.4.0'
 
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit"
@@ -113,8 +122,9 @@ dependencies {
 
     // ThreeTen Android Backport
     implementation "com.jakewharton.threetenabp:threetenabp:$threetenabp"
-
     testImplementation "junit:junit:$junit"
+    testImplementation "io.kotlintest:kotlintest-runner-junit5:$kotlintest"
+    testImplementation group: "org.mockito", name: "mockito-core", version: "$mockito"
     androidTestImplementation "androidx.test:runner:$test_runner"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso"
 }

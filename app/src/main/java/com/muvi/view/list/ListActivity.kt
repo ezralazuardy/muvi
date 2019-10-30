@@ -1,7 +1,7 @@
 /*
- * Created by Ezra Lazuardy on 10/14/19 9:55 AM
+ * Created by Ezra Lazuardy on 10/31/19, 12:23 AM
  * Copyright (c) 2019 . All rights reserved.
- * Last modified 10/14/19 9:54 AM
+ * Last modified 10/20/19, 9:07 PM
  */
 
 package com.muvi.view.list
@@ -40,12 +40,12 @@ class ListActivity : AppCompatActivity(),
     SearchView.OnQueryTextListener,
     OnListMovieClickListener,
     OnListTvClickListener,
-    OnListFragmentChangeListener {
+    ListFragment.OnFragmentChangeListener {
 
     private var currentFragmentType = ContentType.MOVIE
     private var searchView: SearchView? = null
     private val listActivityViewPagerAdapter by lazy {
-        ListActivityViewPagerAdapter(supportFragmentManager, this)
+        ListActivityViewPagerAdapter(supportFragmentManager)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -111,6 +111,7 @@ class ListActivity : AppCompatActivity(),
                 setOnQueryTextListener(this@ListActivity)
             }
         }
+        setSearchMovie()
         return true
     }
 

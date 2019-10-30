@@ -1,19 +1,20 @@
 /*
- * Created by Ezra Lazuardy on 10/16/19 2:09 AM
+ * Created by Ezra Lazuardy on 10/31/19, 12:23 AM
  * Copyright (c) 2019 . All rights reserved.
- * Last modified 10/16/19 1:33 AM
+ * Last modified 10/31/19, 12:13 AM
  */
 
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlinx-serialization'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
 
+    //noinspection GroovyMissingReturnStatement
     defaultConfig {
         applicationId "com.muvi"
         minSdkVersion 21
@@ -26,9 +27,9 @@ android {
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [
-                        "room.schemaLocation"  : "$projectDir/schemas".toString(),
-                        "room.incremental"     : "true",
-                        "room.expandProjection": "true"
+                    "room.schemaLocation" : "$projectDir/schemas".toString(),
+                    "room.incremental" : "true",
+                    "room.expandProjection" : "true"
                 ]
             }
         }
@@ -51,12 +52,23 @@ android {
         jvmTarget = "1.8"
     }
 
+    //noinspection GroovyMissingReturnStatement
     packagingOptions {
         exclude 'META-INF/atomicfu.kotlin_module'
     }
 
     androidExtensions {
         experimental = true
+    }
+
+    //noinspection GroovyMissingReturnStatement
+    testOptions {
+        unitTests {
+            all {
+                useJUnitPlatform()
+            }
+            includeAndroidResources true
+        }
     }
 }
 
@@ -69,8 +81,6 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:${androidx_constraint}"
 
     // Androidx Lifecycle Components
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta2'
     kapt "androidx.lifecycle:lifecycle-common-java8:$androidx_lifecycle"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$androidx_lifecycle"
     implementation "androidx.lifecycle:lifecycle-extensions:$androidx_lifecycle"
@@ -91,6 +101,7 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$glide"
 
     // Koin
+    implementation "org.koin:koin-test:$koin"
     implementation "org.koin:koin-android:$koin"
     implementation "org.koin:koin-android-scope:$koin"
     implementation "org.koin:koin-android-viewmodel:$koin"
@@ -106,7 +117,7 @@ dependencies {
 
     // Ktx
     implementation "androidx.core:core-ktx:$ktx"
-    implementation "androidx.fragment:fragment-ktx:$ktx"
+    implementation "androidx.fragment:fragment-ktx:$fragment_ktx"
     implementation "androidx.work:work-runtime-ktx:$work"
 
     // Lottie
@@ -132,6 +143,9 @@ dependencies {
     implementation "com.jakewharton.threetenabp:threetenabp:$threetenabp"
 
     testImplementation "junit:junit:$junit"
+    testImplementation "androidx.test:runner:$test_runner"
+    testImplementation "org.robolectric:robolectric:$robolectric"
+    testImplementation group: "org.mockito", name: "mockito-core", version: "$mockito"
     androidTestImplementation "androidx.test:runner:$test_runner"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso"
 }

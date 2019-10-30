@@ -1,7 +1,7 @@
 /*
- * Created by Ezra Lazuardy on 10/14/19 9:55 AM
+ * Created by Ezra Lazuardy on 10/31/19, 12:23 AM
  * Copyright (c) 2019 . All rights reserved.
- * Last modified 10/14/19 9:54 AM
+ * Last modified 10/31/19, 12:22 AM
  */
 
 package com.muvi.view.list
@@ -23,25 +23,34 @@ import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.error
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class ListFragment(private val onListFragmentChangeListener: OnListFragmentChangeListener) : Fragment(), AnkoLogger {
+class ListFragment : Fragment(), AnkoLogger {
 
     companion object {
 
         private const val ARG_SECTION_NUMBER = "section_number"
 
         @JvmStatic
-        fun newInstance(sectionNumber: Int, onListFragmentChangeListener: OnListFragmentChangeListener): ListFragment {
-            return ListFragment(onListFragmentChangeListener).apply {
+        fun newInstance(sectionNumber: Int): ListFragment =
+            ListFragment().apply {
                 arguments = Bundle().apply {
                     putInt(ARG_SECTION_NUMBER, sectionNumber)
                 }
             }
-        }
     }
 
     private val listMovieAdapter by lazy { ListMovieAdapter() }
     private val listTvAdapter by lazy { ListTvAdapter() }
     private val listViewModel: ListViewModel by viewModel()
+    private lateinit var onFragmentChangeListener: OnFragmentChangeListener
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        try {
+            onFragmentChangeListener = activity as OnFragmentChangeListener
+        } catch (e: ClassCastException) {
+            throw ClassCastException(e.message + " | " + activity.toString())
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -113,7 +122,9 @@ class ListFragment(private val onListFragmentChangeListener: OnListFragmentChang
 
     override fun onResume() {
         super.onResume()
-        if (arguments?.getInt(ARG_SECTION_NUMBER) ?: 1 == 1) onListFragmentChangeListener.onFragmentChange(ContentType.MOVIE) else onListFragmentChangeListener.onFragmentChange(ContentType.TV)
+        if (arguments?.getInt(ARG_SECTION_NUMBER) ?: 1 == 1) onFragmentChangeListener.onFragmentChange(ContentType.MOVIE) else onFragmentChangeListener.onFragmentChange(
+            ContentType.TV
+        )
     }
 
     override fun onPause() {
@@ -124,5 +135,10 @@ class ListFragment(private val onListFragmentChangeListener: OnListFragmentChang
     override fun onDestroyView() {
         super.onDestroyView()
         recyclerViewFragmentActivityList.adapter = null
+    }
+
+    interface OnFragmentChangeListener {
+
+        fun onFragmentChange(contentType: ContentType)
     }
 }
