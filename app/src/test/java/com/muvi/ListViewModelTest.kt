@@ -1,53 +1,95 @@
-/*
- * Created by Ezra Lazuardy on 10/31/19, 12:23 AM
- * Copyright (c) 2019 . All rights reserved.
- * Last modified 10/31/19, 12:18 AM
- */
-
 package com.muvi
 
-import android.os.Build
+import android.app.Application
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.Observer
+import com.muvi.model.discover.DiscoverMovieListResult
+import com.muvi.model.discover.DiscoverTvListResult
+import com.muvi.model.genre.Genre
+import com.muvi.repository.MovieRepository
+import com.muvi.repository.TvRepository
 import com.muvi.viewmodel.list.ListViewModel
-import org.junit.After
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNotNull
+import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.koin.core.context.stopKoin
-import org.koin.test.KoinTest
-import org.koin.test.inject
+import org.mockito.Mock
 import org.mockito.Mockito.verify
-import org.robolectric.RobolectricTestRunner
-import org.robolectric.annotation.Config
+import org.mockito.junit.MockitoJUnitRunner
 
-@RunWith(RobolectricTestRunner::class)
-@Config(sdk = [Build.VERSION_CODES.O_MR1])
-class ListViewModelTest : KoinTest {
+@RunWith(MockitoJUnitRunner::class)
+class ListViewModelTest {
 
-    private val listViewModel: ListViewModel by inject()
-    private val discoverMoviesTotal = 20
-    private val discoverTvsTotal = 20
+    @Rule
+    @JvmField
+    var rule = InstantTaskExecutorRule()
+
+    @Mock
+    lateinit var application: Application
+
+    @Mock
+    lateinit var movieRepository: MovieRepository
+
+    @Mock
+    lateinit var tvRepository: TvRepository
+
+    @Mock
+    lateinit var movieDiscoverObserver: Observer<List<DiscoverMovieListResult>>
+
+    @Mock
+    lateinit var tvDiscoverObserver: Observer<List<DiscoverTvListResult>>
+
+    @Mock
+    lateinit var genreObserver: Observer<List<Genre>>
+
+    private lateinit var listViewModel: ListViewModel
+
+    @Before
+    fun setUp() {
+        listViewModel = ListViewModel(application, movieRepository, tvRepository)
+    }
+
+    @Test
+    fun getLoaded() {
+        assertEquals(false, listViewModel.loaded)
+    }
+
+    @Test
+    fun setLoaded() {
+        listViewModel.loaded = true
+        assertEquals(true, listViewModel.loaded)
+    }
 
     @Test
     fun getDiscoverMovies() {
-        listViewModel.discoverMovies.observeForever {
-            assertNotNull(it)
-            assertEquals(discoverMoviesTotal, it.size)
-            verify(it).size
-        }
+        listViewModel.discoverMovies.observeForever(movieDiscoverObserver)
+//        listViewModel.discoverMovies.observeForever {
+//            verify(it).isNotEmpty()
+//            assertEquals(20, it.size)
+//            println(it.toString())
+//        }
     }
 
     @Test
     fun getDiscoverTvs() {
         listViewModel.discoverTvs.observeForever {
-            assertNotNull(it)
-            assertEquals(discoverTvsTotal, it.size)
-            verify(it).size
+            verify(it).isNotEmpty()
+            assertEquals(20, it.size)
         }
     }
 
-    @After
-    fun after() {
-        stopKoin()
+    @Test
+    fun getMovieGenres() {
+        listViewModel.movieGenres.observeForever {
+            verify(it).isNotEmpty()
+        }
+    }
+
+    @Test
+    fun getTvGenres() {
+        listViewModel.tvGenres.observeForever {
+            verify(it).isNotEmpty()
+        }
     }
 }
