@@ -10,6 +10,8 @@ import android.database.Cursor
 import com.muvi.dao.local.LocalMovieDao
 import com.muvi.dao.remote.RemoteMovieDao
 import com.muvi.database.local.entity.MovieEntity
+import com.muvi.model.discover.DiscoverMovieListResult
+import com.muvi.model.genre.Genre
 import com.muvi.repository.base.TMDBRepository
 import org.jetbrains.anko.AnkoLogger
 
@@ -62,4 +64,8 @@ class MovieRepository(
 
     fun getFavouriteListSynchronous() =
         localMovieDao.getFavouriteListSynchronous()
+
+    fun getDummyDiscoverList(): List<DiscoverMovieListResult> = listOf()
+
+    fun getDummyGenres(): List<Genre> = listOf()
 }

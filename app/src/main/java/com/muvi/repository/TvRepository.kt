@@ -10,6 +10,8 @@ import android.database.Cursor
 import com.muvi.dao.local.LocalTvDao
 import com.muvi.dao.remote.RemoteTvDao
 import com.muvi.database.local.entity.TvEntity
+import com.muvi.model.discover.DiscoverTvListResult
+import com.muvi.model.genre.Genre
 import com.muvi.repository.base.TMDBRepository
 import org.jetbrains.anko.AnkoLogger
 
@@ -52,4 +54,8 @@ class TvRepository(
 
     override fun getFavouriteListCursorSynchronous(): Cursor =
         localTvDao.getFavouriteListCursorSynchronous()
+
+    fun getDummyDiscoverList(): List<DiscoverTvListResult> = listOf()
+
+    fun getDummyGenres(): List<Genre> = listOf()
 }
