@@ -34,7 +34,6 @@ class FavouriteListViewModel(
     fun getFavouriteMovies() =
         viewModelScope.launch(Dispatchers.IO) {
             _favouriteMovies.postValue(movieRepository.getFavouriteList())
-
         }
 
     fun getFavouriteTvs() =

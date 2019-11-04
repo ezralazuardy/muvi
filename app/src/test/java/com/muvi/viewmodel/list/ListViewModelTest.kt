@@ -73,8 +73,7 @@ class ListViewModelTest {
             `when`(
                 movieRepository
                     .getDiscoverList(BuildConfig.TMDB_API_KEY, AppConfig.TMDB_API_DEFAULT_LANGUAGE)
-            )
-                .thenReturn(it)
+            ).thenReturn(it)
             with(listViewModel.discoverMovies.getOrAwaitValue()) {
                 assertNotNull(this)
                 assertEquals(it, this)
@@ -90,8 +89,7 @@ class ListViewModelTest {
             `when`(
                 tvRepository
                     .getDiscoverList(BuildConfig.TMDB_API_KEY, AppConfig.TMDB_API_DEFAULT_LANGUAGE)
-            )
-                .thenReturn(it)
+            ).thenReturn(it)
             with(listViewModel.discoverTvs.getOrAwaitValue()) {
                 assertNotNull(this)
                 assertEquals(it, this)
@@ -107,8 +105,7 @@ class ListViewModelTest {
             `when`(
                 movieRepository
                     .getGenres(BuildConfig.TMDB_API_KEY, AppConfig.TMDB_API_DEFAULT_LANGUAGE)
-            )
-                .thenReturn(it)
+            ).thenReturn(it)
             with(listViewModel.movieGenres.getOrAwaitValue()) {
                 assertNotNull(this)
                 assertEquals(it, this)
@@ -124,8 +121,7 @@ class ListViewModelTest {
             `when`(
                 tvRepository
                     .getGenres(BuildConfig.TMDB_API_KEY, AppConfig.TMDB_API_DEFAULT_LANGUAGE)
-            )
-                .thenReturn(it)
+            ).thenReturn(it)
             with(listViewModel.tvGenres.getOrAwaitValue()) {
                 assertNotNull(this)
                 assertEquals(it, this)

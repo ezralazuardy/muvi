@@ -1,7 +1,6 @@
 package com.muvi.viewmodel.settings
 
 import android.app.Application
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.muvi.config.AppConfig
 import com.muvi.repository.SettingsRepository
 import com.muvi.repository.utils.UtilsRepository
@@ -11,7 +10,6 @@ import kotlinx.coroutines.ObsoleteCoroutinesApi
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
@@ -23,9 +21,6 @@ import java.util.*
 @ExperimentalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
 class SettingsViewModelTest {
-
-    @get:Rule
-    var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     @Mock
     lateinit var application: Application
