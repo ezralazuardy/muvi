@@ -18,8 +18,6 @@ class SettingsViewModel(
     private val utilsRepository: UtilsRepository
 ) : AndroidViewModel(application) {
 
-    val appLanguage: String = settingsRepository.appLanguage
-
     var reminderStatus: Boolean = false
         set(status) {
             settingsRepository.reminderStatus = status.also {
@@ -45,6 +43,8 @@ class SettingsViewModel(
             field = status
         }
         get() = settingsRepository.newReleaseStatus
+
+    fun getAppLanguage(): String = settingsRepository.getAppLanguage()
 
     fun getFormattedTime(time: String) =
         utilsRepository.formatTime(AppConfig.DEFAULT_TIME_FORMAT_12, time)

@@ -41,7 +41,7 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     private fun showCurrentAppLanguage() {
-        rowAppLanguageDescriptionActivitySettings.text = settingsViewModel.appLanguage
+        rowAppLanguageDescriptionActivitySettings.text = settingsViewModel.getAppLanguage()
     }
 
     private fun setReminder() {

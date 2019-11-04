@@ -21,8 +21,6 @@ class SettingsRepository(private val context: Context) {
         context.defaultSharedPreferences
     }
 
-    var appLanguage: String = Locale.getDefault().displayLanguage
-
     var reminderStatus: Boolean = false
         set(status) {
             sharedPreferences?.edit {
@@ -64,6 +62,8 @@ class SettingsRepository(private val context: Context) {
                 false
             ) ?: false
         }
+
+    fun getAppLanguage(): String = Locale.getDefault().displayLanguage
 
     fun startReminder() = ReminderWorker.start(context, reminderTime)
 

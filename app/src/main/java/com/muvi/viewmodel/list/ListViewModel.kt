@@ -27,10 +27,6 @@ class ListViewModel(
 ) : AndroidViewModel(application), OnLoadViewModel {
 
     override var loaded = false
-    val dummyDiscoverMovies: LiveData<List<DiscoverMovieListResult>> by lazy { dummyDiscoverMovies() }
-    val dummyDiscoverTvs: LiveData<List<DiscoverTvListResult>> by lazy { dummyDiscoverTvs() }
-    val dummyMovieGenres: LiveData<List<Genre>> by lazy { dummyMovieGenres() }
-    val dummyTvGenres: LiveData<List<Genre>> by lazy { dummyTvGenres() }
     val discoverMovies: LiveData<List<DiscoverMovieListResult>> by lazy { discoverMovies() }
     val discoverTvs: LiveData<List<DiscoverTvListResult>> by lazy { discoverTvs() }
     val movieGenres: LiveData<List<Genre>> by lazy { movieGenres() }
@@ -68,25 +64,5 @@ class ListViewModel(
     ) =
         liveData(Dispatchers.IO) {
             emit(tvRepository.getGenres(apiKey, language))
-        }
-
-    private fun dummyDiscoverMovies() =
-        liveData {
-            emit(movieRepository.getDummyDiscoverList())
-        }
-
-    private fun dummyDiscoverTvs() =
-        liveData {
-            emit(tvRepository.getDummyDiscoverList())
-        }
-
-    private fun dummyMovieGenres() =
-        liveData {
-            emit(movieRepository.getDummyGenres())
-        }
-
-    private fun dummyTvGenres() =
-        liveData {
-            emit(tvRepository.getDummyGenres())
         }
 }
