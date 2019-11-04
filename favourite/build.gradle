@@ -110,9 +110,6 @@ dependencies {
     // Lottie
     implementation "com.airbnb.android:lottie:$lottie"
 
-    // MaterialSearchView
-    implementation 'com.miguelcatalan:materialsearchview:1.4.0'
-
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit"
