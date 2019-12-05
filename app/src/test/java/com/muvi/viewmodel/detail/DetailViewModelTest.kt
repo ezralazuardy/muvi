@@ -10,8 +10,8 @@ import com.muvi.repository.MovieRepository
 import com.muvi.repository.TvRepository
 import com.muvi.repository.utils.UtilsRepository
 import com.muvi.rule.CoroutineTestRule
-import com.muvi.utils.Utils
-import com.muvi.utils.Utils.getOrAwaitValue
+import com.muvi.utils.TestUtils
+import com.muvi.utils.TestUtils.getOrAwaitValue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.ObsoleteCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
@@ -79,8 +79,7 @@ class DetailViewModelTest {
             `when`(
                 movieRepository
                     .getDetail(detailViewModel.contentId, BuildConfig.TMDB_API_KEY, AppConfig.TMDB_API_DEFAULT_LANGUAGE)
-            )
-                .thenReturn(it)
+            ).thenReturn(it)
             with(detailViewModel.movieDetail.getOrAwaitValue()) {
                 assertNotNull(this)
                 assertEquals(it, this)
@@ -95,8 +94,7 @@ class DetailViewModelTest {
             `when`(
                 tvRepository
                     .getDetail(detailViewModel.contentId, BuildConfig.TMDB_API_KEY, AppConfig.TMDB_API_DEFAULT_LANGUAGE)
-            )
-                .thenReturn(it)
+            ).thenReturn(it)
             with(detailViewModel.tvDetail.getOrAwaitValue()) {
                 assertNotNull(this)
                 assertEquals(it, this)
@@ -123,8 +121,7 @@ class DetailViewModelTest {
     @Test
     fun checkIsFavouriteMovie() = runBlockingTest {
         MovieFactory.createDummyMovieEntity().let {
-            `when`(movieRepository.checkIsFavourite(detailViewModel.contentId))
-                .thenReturn(it)
+            `when`(movieRepository.checkIsFavourite(detailViewModel.contentId)).thenReturn(it)
             with(detailViewModel.checkIsFavouriteMovie(detailViewModel.contentId).getOrAwaitValue()) {
                 assertNotNull(this)
                 assertEquals(it, this)
@@ -136,8 +133,7 @@ class DetailViewModelTest {
     @Test
     fun checkIsFavouriteTv() = runBlockingTest {
         TvFactory.createDummyTvEntity().let {
-            `when`(tvRepository.checkIsFavourite(detailViewModel.contentId))
-                .thenReturn(it)
+            `when`(tvRepository.checkIsFavourite(detailViewModel.contentId)).thenReturn(it)
             with(detailViewModel.checkIsFavouriteTv(detailViewModel.contentId).getOrAwaitValue()) {
                 assertNotNull(this)
                 assertEquals(it, this)
@@ -150,8 +146,7 @@ class DetailViewModelTest {
     fun addMovieToFavourite() = runBlockingTest {
         MovieFactory.createDummyMovieEntity().let {
             (0..100).random().toLong().let { result ->
-                `when`(movieRepository.addToFavourite(it))
-                    .thenReturn(result)
+                `when`(movieRepository.addToFavourite(it)).thenReturn(result)
                 with(detailViewModel.addMovieToFavourite(it).getOrAwaitValue()) {
                     assertEquals(result, this)
                     print("addMovieToFavourite(): $this")
@@ -164,8 +159,7 @@ class DetailViewModelTest {
     fun addTvToFavourite() = runBlockingTest {
         TvFactory.createDummyTvEntity().let {
             (0..100).random().toLong().let { result ->
-                `when`(tvRepository.addToFavourite(it))
-                    .thenReturn(result)
+                `when`(tvRepository.addToFavourite(it)).thenReturn(result)
                 with(detailViewModel.addTvToFavourite(it).getOrAwaitValue()) {
                     assertEquals(result, this)
                     print("addTvToFavourite(): $this")
@@ -178,8 +172,7 @@ class DetailViewModelTest {
     fun removeMovieFromFavourite() = runBlockingTest {
         MovieFactory.createDummyMovieEntity().let {
             (0..1).random().let { result ->
-                `when`(movieRepository.removeFromFavorite(it))
-                    .thenReturn(result)
+                `when`(movieRepository.removeFromFavorite(it)).thenReturn(result)
                 with(detailViewModel.removeMovieFromFavourite(it).getOrAwaitValue()) {
                     assertEquals(result, this)
                     print("removeMovieFromFavourite(): $this")
@@ -192,8 +185,7 @@ class DetailViewModelTest {
     fun removeTvFromFavourite() = runBlockingTest {
         TvFactory.createDummyTvEntity().let {
             (0..1).random().let { result ->
-                `when`(tvRepository.removeFromFavorite(it))
-                    .thenReturn(result)
+                `when`(tvRepository.removeFromFavorite(it)).thenReturn(result)
                 with(detailViewModel.removeTvFromFavourite(it).getOrAwaitValue()) {
                     assertEquals(result, this)
                     print("removeTvFromFavourite(): $this")
@@ -204,7 +196,7 @@ class DetailViewModelTest {
 
     @Test
     fun getFormattedDate() = runBlockingTest {
-        Utils.getDummyDate().let {
+        TestUtils.getDummyDate().let {
             UUID.randomUUID().toString().let { dummyString ->
                 `when`(detailViewModel.getFormattedDate(dummyString)).thenReturn(it)
                 with(detailViewModel.getFormattedDate(dummyString)) {

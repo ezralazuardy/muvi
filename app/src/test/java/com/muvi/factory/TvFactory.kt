@@ -7,7 +7,7 @@ import com.muvi.model.detail.Tv
 import com.muvi.model.discover.DiscoverTvListResult
 import com.muvi.model.genre.Genre
 
-object TvFactory {
+internal object TvFactory {
 
     fun createDummyTvs(): List<DiscoverTvListResult> =
         with(mutableListOf<DiscoverTvListResult>()) {

@@ -4,7 +4,7 @@ import android.app.Application
 import com.muvi.config.AppConfig
 import com.muvi.repository.SettingsRepository
 import com.muvi.repository.utils.UtilsRepository
-import com.muvi.utils.Utils
+import com.muvi.utils.TestUtils
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.ObsoleteCoroutinesApi
 import org.junit.Assert.assertEquals
@@ -129,7 +129,7 @@ class SettingsViewModelTest {
 
     @Test
     fun getFormattedTime() {
-        Utils.getDummyTime().let {
+        TestUtils.getDummyTime().let {
             UUID.randomUUID().toString().let { dummyString ->
                 `when`(settingsViewModel.getFormattedTime(dummyString)).thenReturn(it)
                 with(settingsViewModel.getFormattedTime(dummyString)) {

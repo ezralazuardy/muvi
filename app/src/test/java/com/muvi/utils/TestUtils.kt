@@ -6,7 +6,7 @@ import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.TimeoutException
 
-object Utils {
+internal object TestUtils {
 
     fun getDummyDate(): String = "01 January 2019"
 

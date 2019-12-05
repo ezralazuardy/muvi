@@ -6,7 +6,7 @@ import com.muvi.model.detail.Movie
 import com.muvi.model.discover.DiscoverMovieListResult
 import com.muvi.model.genre.Genre
 
-object MovieFactory {
+internal object MovieFactory {
 
     fun createDummyMovies(): List<DiscoverMovieListResult> =
         with(mutableListOf<DiscoverMovieListResult>()) {

@@ -7,7 +7,7 @@ import com.muvi.factory.TvFactory
 import com.muvi.repository.MovieRepository
 import com.muvi.repository.TvRepository
 import com.muvi.rule.CoroutineTestRule
-import com.muvi.utils.Utils.getOrAwaitValue
+import com.muvi.utils.TestUtils.getOrAwaitValue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.ObsoleteCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest

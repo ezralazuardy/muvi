@@ -9,7 +9,7 @@ import com.muvi.factory.TvFactory
 import com.muvi.repository.MovieRepository
 import com.muvi.repository.TvRepository
 import com.muvi.rule.CoroutineTestRule
-import com.muvi.utils.Utils.getOrAwaitValue
+import com.muvi.utils.TestUtils.getOrAwaitValue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.ObsoleteCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
@@ -71,8 +71,7 @@ class ListViewModelTest {
     fun getDiscoverMovies() = runBlockingTest {
         MovieFactory.createDummyMovies().let {
             `when`(
-                movieRepository
-                    .getDiscoverList(BuildConfig.TMDB_API_KEY, AppConfig.TMDB_API_DEFAULT_LANGUAGE)
+                movieRepository.getDiscoverList(BuildConfig.TMDB_API_KEY, AppConfig.TMDB_API_DEFAULT_LANGUAGE)
             ).thenReturn(it)
             with(listViewModel.discoverMovies.getOrAwaitValue()) {
                 assertNotNull(this)
@@ -87,8 +86,7 @@ class ListViewModelTest {
     fun getDiscoverTvs() = runBlockingTest {
         TvFactory.createDummyTvs().let {
             `when`(
-                tvRepository
-                    .getDiscoverList(BuildConfig.TMDB_API_KEY, AppConfig.TMDB_API_DEFAULT_LANGUAGE)
+                tvRepository.getDiscoverList(BuildConfig.TMDB_API_KEY, AppConfig.TMDB_API_DEFAULT_LANGUAGE)
             ).thenReturn(it)
             with(listViewModel.discoverTvs.getOrAwaitValue()) {
                 assertNotNull(this)

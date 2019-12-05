@@ -9,7 +9,7 @@ import com.muvi.factory.TvFactory
 import com.muvi.repository.MovieRepository
 import com.muvi.repository.TvRepository
 import com.muvi.rule.CoroutineTestRule
-import com.muvi.utils.Utils.getOrAwaitValue
+import com.muvi.utils.TestUtils.getOrAwaitValue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.ObsoleteCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
@@ -73,10 +73,8 @@ class SearchViewModelTest {
         MovieFactory.createDummyMovies().let {
             UUID.randomUUID().toString().let { dummyQuery ->
                 `when`(
-                    movieRepository
-                        .search(BuildConfig.TMDB_API_KEY, AppConfig.TMDB_API_DEFAULT_LANGUAGE, dummyQuery)
-                )
-                    .thenReturn(it)
+                    movieRepository.search(BuildConfig.TMDB_API_KEY, AppConfig.TMDB_API_DEFAULT_LANGUAGE, dummyQuery)
+                ).thenReturn(it)
                 searchViewModel.searchMovies(query = dummyQuery)
                 with(searchViewModel.searchMovies.getOrAwaitValue()) {
                     assertNotNull(this)
@@ -93,10 +91,8 @@ class SearchViewModelTest {
         TvFactory.createDummyTvs().let {
             UUID.randomUUID().toString().let { dummyQuery ->
                 `when`(
-                    tvRepository
-                        .search(BuildConfig.TMDB_API_KEY, AppConfig.TMDB_API_DEFAULT_LANGUAGE, dummyQuery)
-                )
-                    .thenReturn(it)
+                    tvRepository.search(BuildConfig.TMDB_API_KEY, AppConfig.TMDB_API_DEFAULT_LANGUAGE, dummyQuery)
+                ).thenReturn(it)
                 searchViewModel.searchTvs(query = dummyQuery)
                 with(searchViewModel.searchTvs.getOrAwaitValue()) {
                     assertNotNull(this)
@@ -112,10 +108,8 @@ class SearchViewModelTest {
     fun getMovieGenres() = runBlockingTest {
         MovieFactory.createDummyGenres().let {
             `when`(
-                movieRepository
-                    .getGenres(BuildConfig.TMDB_API_KEY, AppConfig.TMDB_API_DEFAULT_LANGUAGE)
-            )
-                .thenReturn(it)
+                movieRepository.getGenres(BuildConfig.TMDB_API_KEY, AppConfig.TMDB_API_DEFAULT_LANGUAGE)
+            ).thenReturn(it)
             with(searchViewModel.movieGenres.getOrAwaitValue()) {
                 assertNotNull(this)
                 assertEquals(it, this)
@@ -129,10 +123,8 @@ class SearchViewModelTest {
     fun getTvGenres() = runBlockingTest {
         TvFactory.createDummyGenres().let {
             `when`(
-                tvRepository
-                    .getGenres(BuildConfig.TMDB_API_KEY, AppConfig.TMDB_API_DEFAULT_LANGUAGE)
-            )
-                .thenReturn(it)
+                tvRepository.getGenres(BuildConfig.TMDB_API_KEY, AppConfig.TMDB_API_DEFAULT_LANGUAGE)
+            ).thenReturn(it)
             with(searchViewModel.tvGenres.getOrAwaitValue()) {
                 assertNotNull(this)
                 assertEquals(it, this)
