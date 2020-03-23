@@ -12,7 +12,7 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    buildToolsVersion "29.0.3"
 
     //noinspection GroovyMissingReturnStatement
     defaultConfig {
@@ -70,7 +70,7 @@ dependencies {
     // Androidx Lifecycle Components
     kapt "androidx.lifecycle:lifecycle-common-java8:$androidx_lifecycle"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$androidx_lifecycle"
-    implementation "androidx.lifecycle:lifecycle-extensions:$androidx_lifecycle"
+    implementation "androidx.lifecycle:lifecycle-extensions:$androidx_lifecycle_extensions"
     androidTestImplementation "androidx.arch.core:core-testing:$androidx_arch"
 
     // Android Material
@@ -104,8 +104,8 @@ dependencies {
 
     // Ktx
     implementation "androidx.core:core-ktx:$ktx"
+    implementation "androidx.fragment:fragment-ktx:$ktx"
     implementation "androidx.work:work-runtime-ktx:$work"
-    implementation "androidx.fragment:fragment-ktx:$fragment_ktx"
     debugImplementation ("androidx.fragment:fragment-testing:$androidx_fragment_testing", {
         exclude group: 'androidx.test', module: 'core'
     })

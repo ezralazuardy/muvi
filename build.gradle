@@ -6,14 +6,15 @@
 
 buildscript {
 
-    ext.kotlin_version = '1.3.61'
+    ext.kotlin_version = '1.3.70'
 
     ext {
-        android_material = '1.0.0'
+        android_material = '1.1.0'
         androidx = '1.1.0'
         androidx_arch = '2.1.0'
-        androidx_constraint = '2.0.0-beta3'
-        androidx_lifecycle = '2.2.0-rc02'
+        androidx_constraint = '2.0.0-beta4'
+        androidx_lifecycle = '2.3.0-alpha01'
+        androidx_lifecycle_extensions = '2.2.0'
         androidx_core_test = '2.1.0'
         androidx_fragment_testing = '1.2.0-rc02'
         anko = '0.10.8'
@@ -23,14 +24,13 @@ buildscript {
         kotlin_version = '1.3.50'
         kotlin_coroutines = '1.3.2'
         kotlin_serialization_runtime = '0.12.0'
-        ktx = '1.2.0-rc01'
-        fragment_ktx = '1.2.0-rc02'
+        ktx = '1.3.0-alpha02'
         lottie = '3.1.0'
         retrofit = '2.6.2'
-        room = '2.2.2'
+        room = '2.2.5'
         rounded_image_view = '2.3.0'
         threetenabp = '1.2.1'
-        work = '2.2.0'
+        work = '2.3.4'
 
         junit = '4.13-beta-3'
         mockito = '2.27.0'
@@ -49,7 +49,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.2'
+        classpath 'com.android.tools.build:gradle:3.6.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlin_version"
     }
